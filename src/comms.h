@@ -1,29 +1,6 @@
 #include <WiFi.h>
 #include <esp_now.h>
-
-#define MAX_PEERS 2
-
-typedef struct struct_message
-{
-    char msg[32];
-    uint8_t senderMAC[6];
-} struct_message;
-
-uint8_t peerAddresses[MAX_PEERS][6] = {
-    {0xCC, 0x8D, 0xA2, 0x94, 0x74, 0x48},
-    {0xCC, 0x8D, 0xA2, 0x94, 0xA0, 0x00}};
-
-struct_message data;
-
-void printMac(const uint8_t *macAddr)
-{
-    for (int i = 0; i < 6; i++)
-    {
-        Serial.printf("%02X", macAddr[i]);
-        if (i < 5)
-            Serial.print(":");
-    }
-}
+#include "comms_helpers.h"
 
 void onSent(const uint8_t *macAddr, esp_now_send_status_t status)
 {
@@ -49,20 +26,15 @@ void onReceive(const uint8_t *macAddr, const uint8_t *incomingData, int len)
     Serial.println(receivedData.msg);
 }
 
-bool matchingMac(uint8_t *mac)
+void findMac()
 {
-    for (int i = 0; i < 6; i++)
-    {
-        if (mac[i] != data.senderMAC[i])
-            return false;
-    }
-    return true;
+    Serial.println(WiFi.macAddress());
+    delay(500);
 }
 
 void setupEspNow()
 {
     WiFi.mode(WIFI_STA);
-    Serial.println(WiFi.macAddress());
     WiFi.macAddress(data.senderMAC);
 
     if (esp_now_init() != ESP_OK)
@@ -106,23 +78,5 @@ void broadcast(String msg)
             continue;
 
         esp_err_t result = esp_now_send(peerAddresses[i], (uint8_t *)&data, sizeof(data));
-    }
-}
-
-void testConnections()
-{
-    esp_now_peer_num_t peer_num;
-    esp_now_get_peer_num(&peer_num);
-    Serial.print("Number of peers: ");
-    Serial.println(peer_num.total_num);
-
-    for (int i = 0; i < peer_num.total_num; i++)
-    {
-        esp_now_peer_info_t peer;
-        esp_now_get_peer(peerAddresses[i], &peer);
-        Serial.print("Peer ");
-        Serial.print(i);
-        Serial.print(" MAC: ");
-        printMac(peer.peer_addr);
     }
 }

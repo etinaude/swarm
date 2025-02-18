@@ -7,9 +7,11 @@ void setup()
 
 void loop()
 {
-  int num = random(10, 20);
-  String msg = "test" + String(num);
+  findMac();
 
-  broadcast(msg);
-  delay(5000);
+  // int num = random(10, 20);
+  // String msg = "test" + String(num);
+  //
+  // broadcast(msg);
+  // delay(5000);
 }
