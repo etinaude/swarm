@@ -1,18 +1,15 @@
-#include <Arduino.h>
+#include "comms.h"
 
-// put function declarations here:
-int myFunction(int, int);
-
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+void setup()
+{
+  setupEspNow();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+void loop()
+{
+  int num = random(10, 20);
+  String msg = "test" + String(num);
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  broadcast(msg);
+  delay(5000);
 }
