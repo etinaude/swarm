@@ -5,7 +5,6 @@ from sensor_msgs.msg import CompressedImage
 
 # openCV
 import cv2
-from inference import InferencePipeline
 import numpy as np
 import cv_bridge
 

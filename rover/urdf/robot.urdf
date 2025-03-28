@@ -3,12 +3,7 @@
 <!-- Onshape https://cad.onshape.com/documents/ef4ea310a5b9b0ac5cd81cc7/w/2db14a1706a427d5ade5b5ce/e/5140c77deca47f6250395c6b -->
 <robot name="urdf">
   <!-- Link rover -->
-  <link name="rover">
-    <inertial>
-      <origin xyz="-0.00279427 -0.00549512 -0.0134473" rpy="0 0 0"/>
-      <mass value="8.80205"/>
-      <inertia ixx="0.563371" ixy="0.00509902" ixz="0.0115029" iyy="0.38337" iyz="-0.115787" izz="0.431712"/>
-    </inertial>
+  <link name="base_link">
     <!-- Part short -->
     <visual>
       <origin xyz="-0.074719 0.1614 0.3685" rpy="5.97905e-14 1.5708 0"/>
@@ -1301,7 +1296,7 @@
   <!-- Joint from rover to grip_sub_ass -->
   <joint name="Slider 1" type="prismatic">
     <origin xyz="-0.047719 0.186555 0.0133914" rpy="-3.14159 5.31855e-17 3.14159"/>
-    <parent link="rover"/>
+    <parent link="base_link"/>
     <child link="grip_sub_ass"/>
     <axis xyz="0 0 1"/>
     <limit effort="10" velocity="10" lower="-1" upper="1"/>

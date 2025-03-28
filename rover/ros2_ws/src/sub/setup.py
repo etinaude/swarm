@@ -22,6 +22,7 @@ setup(
        'console_scripts': [
                 'image_sub = sub.image_sub:main',
                 'keyboard_sub = sub.keyboard_sub:main',
+                'bullet_sim = sub.bullet_sim:main',
         ],
     },
 )

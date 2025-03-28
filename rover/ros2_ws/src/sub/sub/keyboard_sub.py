@@ -6,12 +6,6 @@ from geometry_msgs.msg import Twist
 class KeyboardSubscriber(Node):
     def __init__(self):
         super().__init__('keyboard_subscriber')
-        # self.subscription = self.create_subscription(
-        #     CompressedImage,
-        #     '/image_raw/compressed',
-        #     self.listener_callback,
-        #     10)
-        # self.subscription  # prevent unused variable warning
 
         self.subscription = self.create_subscription(
             Twist,
@@ -21,10 +15,10 @@ class KeyboardSubscriber(Node):
 
 
     def listener_callback(self, msg):
-        self.get_logger().info('data')
+        self.get_logger().info(f"Linear: {msg.linear.x}, Angular: {msg.angular.z}")
 
-        # self.get_logger().info('data')
-        # # self.get_logger().info('I heard: "%s"' % msg.data)
+
+
 
 
 def main(args=None):
