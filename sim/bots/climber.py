@@ -5,7 +5,7 @@ speed = 20
 size = [20, 20]
 
 
-class Robot:
+class Rover:
     def __init__(self, x, y, screen):
         self.x = x
         self.y = y

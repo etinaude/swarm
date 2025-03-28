@@ -44,14 +44,18 @@ class House:
 
     def current_layer(self):
         not_placed = list(filter(lambda x: not (x.placed), self.bricks))
-        return min([brick.layer for brick in not_placed] + [999])
+        return min([brick.pos.layer for brick in not_placed] + [999])
 
     def get_canidate_bricks(self):
         current_layer = self.current_layer()
         return list(
-            filter(lambda x: ((not x.placed) and x.layer == current_layer), self.bricks)
+            filter(
+                lambda x: ((not x.placed) and x.pos.layer == current_layer), self.bricks
+            )
         )
 
-    def place_brick(self, brick):
+    def place_brick(self, target):
+        brick = list(filter(lambda x: x.pos == target, self.bricks))[0]
+
         brick.placed = True
         brick.draw()

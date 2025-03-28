@@ -1,11 +1,12 @@
 import json
 import random
-import time
+from position import Position
 import pygame
-from specs import brick_size, brick_pile, robot_count
+from specs import rover_count, gluer_count
 from brick import Brick
-from house import House
-from robot import Robot
+from bots.house import House
+from bots.gluer import Gluer
+from bots.rover import Rover
 
 
 pygame.init()
@@ -13,10 +14,16 @@ screen = pygame.display.set_mode((1000, 1000))
 clock = pygame.time.Clock()
 
 house = House(screen)
-robots = []
+
+rovers = []
+gluers = []
+climbers = []
+
+brick_pile = Position(100, 100)
+
 pile = Brick(
-    brick_pile[0],
-    brick_pile[1],
+    brick_pile.x,
+    brick_pile.y,
     0,
     0,
     screen,
@@ -33,10 +40,15 @@ def load_data():
 
 
 def init_robots():
-    for i in range(robot_count):
+    for i in range(gluer_count):
         x = random.randint(0, 500)
         y = random.randint(0, 500)
-        robots.append(Robot(x, y, screen))
+        gluers.append(Gluer(x, y, screen))
+
+    for i in range(rover_count):
+        x = random.randint(0, 500)
+        y = random.randint(0, 500)
+        rovers.append(Rover(x, y, screen, gluers, brick_pile))
 
 
 def draw():
@@ -45,8 +57,14 @@ def draw():
 
     pile.draw()
 
-    for robot in robots:
-        robot.draw()
+    for rover in rovers:
+        rover.draw()
+
+    for gluer in gluers:
+        gluer.draw()
+
+    for climber in climbers:
+        climber.draw()
 
     pygame.display.flip()
     clock.tick(10)
@@ -54,10 +72,14 @@ def draw():
 
 def step():
     global canidate_bricks
-    for robot in robots:
+    for rover in rovers:
         if canidate_bricks == []:
             canidate_bricks = house.get_canidate_bricks()
-        canidate_bricks = robot.make_move(canidate_bricks, house)
+        canidate_bricks = rover.make_move(canidate_bricks, house)
+
+    for gluer in gluers:
+        gluer.update()
+
     draw()
 
 
@@ -75,7 +97,6 @@ if __name__ == "__main__":
 
         for i in range(100):
             step()
-
             if len(canidate_bricks) == 0:
                 canidate_bricks = house.get_canidate_bricks()
                 if len(canidate_bricks) == 0:
