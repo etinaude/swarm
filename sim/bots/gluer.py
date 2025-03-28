@@ -1,8 +1,8 @@
 from position import Position
-import pygame
+import pygame  # type: ignore
 from specs import brick_size
 
-glue_time = 5 * 1000
+glue_time = 3 * 1000
 size = [20, 20]
 
 # idle
@@ -26,14 +26,8 @@ class Gluer:
     def draw(self):
         color = (120, 20, 120)
         if self.brick is not None:
-            brick_color = (79, 39, 2)
-            brick_location = (
-                self.pos.x,
-                self.pos.y,
-                brick_size[0],
-                brick_size[1],
-            )
-            pygame.draw.rect(self.screen, brick_color, brick_location)
+            self.brick.pos = self.pos.copy_pos()
+            self.brick.draw()
 
         location = (self.pos.x, self.pos.y, size[0], size[1])
         pygame.draw.rect(self.screen, color, location)

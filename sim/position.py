@@ -40,6 +40,9 @@ class Position:
         y = y_diff / distance
         return (x, y)
 
+    def copy_pos(self):
+        return Position(self.x, self.y, self.layer, self.rotation)
+
     def find_closest(self, others):
         if not others:
             return None

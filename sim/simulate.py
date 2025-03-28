@@ -1,7 +1,7 @@
 import json
 import random
 from position import Position
-import pygame
+import pygame  # type: ignore
 from specs import rover_count, gluer_count
 from brick import Brick
 from bots.house import House
@@ -40,9 +40,16 @@ def load_data():
 
 
 def init_robots():
-    for i in range(gluer_count):
-        x = random.randint(0, 500)
-        y = random.randint(0, 500)
+    i = 0
+    while i < gluer_count:
+        x = random.randint(200, 500)
+        y = random.randint(0, 200)
+
+        pos = Position(x, y)
+        for gluer in gluers:
+            if gluer.pos.get_dist(pos) < 50:
+                continue
+        i += 1
         gluers.append(Gluer(x, y, screen))
 
     for i in range(rover_count):

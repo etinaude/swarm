@@ -1,9 +1,9 @@
 from brick import Brick
 from position import Position
-import pygame
+import pygame  # type: ignore
 
 speed = 10
-size = [20, 20]
+size = [30, 30]
 
 # states
 # idle
@@ -33,7 +33,7 @@ class Rover:
     def draw(self):
         color = (20, 120, 20)
         if self.brick is not None:
-            self.brick.pos = self.pos
+            self.brick.pos = self.pos.copy_pos()
 
             self.brick.draw()
 
@@ -61,7 +61,7 @@ class Rover:
         return canidate_bricks
 
     def get_brick(self):
-        self.target = self.brick_pile
+        self.target = self.brick_pile.copy_pos()
         if self.pos.get_dist(self.target) > 10:
             self.move_towards_target()
         else:
@@ -70,6 +70,7 @@ class Rover:
     def place_brick(self, house, canidate_bricks):
         poses = list(map(lambda x: x.pos, canidate_bricks))
         self.target = self.pos.find_closest(poses)
+
         if self.target is None:
             self.state = "idle"
             return canidate_bricks
@@ -100,14 +101,13 @@ class Rover:
         if self.pos.get_dist(self.target) > 10:
             self.move_towards_target()
         else:
-            # hand brick to gluer
             closest_gluer.glue(self.brick)
 
             self.brick = None
             self.state = "waiting"
 
     def wait_for_gluer(self):
-        # find gluers in 10 raduis with state 'ready"
+        # find gluers in raduis with state 'ready"
         gluers = list(
             filter(
                 lambda x: x.pos.get_dist(self.pos) < speed and x.status == "ready",
@@ -119,11 +119,9 @@ class Rover:
 
         gluer = gluers[0]
 
-        self.target = gluer.pos
+        self.target = gluer.pos.copy_pos()
         self.move_towards_target()
         self.brick = gluer.give_brick()
-        print("Got brick from gluer")
-        print(self.brick)
 
     def move_towards_target(self):
         direction = self.pos.get_direction(self.target)
@@ -136,7 +134,7 @@ class Rover:
 
 
 def decide_next_task(self):
-    if self.state == "idle":
+    if self.brick is None and self.state != "waiting":
         self.state = "getting_brick"
 
     if self.brick is not None:

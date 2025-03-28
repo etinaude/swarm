@@ -1,13 +1,13 @@
-import pygame
+import pygame  # type: ignore
 from specs import brick_size
 from position import Position
 
 
 class Brick:
     def __init__(self, x, y, layer, rotation, screen):
+        self.screen = screen
         self.pos = Position(x, y, layer, rotation)
         self.placed = False
-        self.screen = screen
         self.has_adhesive = False
 
     def draw(self):
@@ -25,10 +25,10 @@ class Brick:
         if self.has_adhesive:
             adhesive_color = (255, 255, 255)
             adhesive_location = (
-                self.pos.x + brick_size[0] // 2 - 2,
-                self.pos.y + brick_size[1] // 2 - 2,
-                4,
-                4,
+                self.pos.x + brick_size[0] // 2 - 8,
+                self.pos.y + brick_size[1] // 2 - 8,
+                16,
+                16,
             )
             pygame.draw.rect(self.screen, adhesive_color, adhesive_location)
 
