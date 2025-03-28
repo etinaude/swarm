@@ -95,8 +95,7 @@ def draw():
 
 def step():
     for rover in rovers:
-        if state.canidate_bricks == []:
-            state.canidate_bricks = house.get_canidate_bricks()
+        state.canidate_bricks = house.get_canidate_bricks()
         rover.make_move()
 
     for gluer in gluers:

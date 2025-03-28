@@ -73,9 +73,9 @@ class Rover:
 
         if self.pos.get_dist(self.target) > self.speed:
             self.move_towards_target()
-
-        # house.place_brick(self.target)
-        self.brick = None
+        else:
+            self.global_state.house.place_brick(self.target)
+            self.brick = None
 
     def get_target_distance(self):
         return self.pos.get_dist(self.target)
