@@ -12,6 +12,7 @@ from bots.rover import Rover
 pygame.init()
 screen = pygame.display.set_mode((1000, 1000))
 clock = pygame.time.Clock()
+sim_speed = 10
 
 house = House(screen)
 
@@ -47,19 +48,20 @@ def init_robots():
 
         pos = Position(x, y)
         for gluer in gluers:
-            if gluer.pos.get_dist(pos) < 50:
+            if gluer.pos.get_dist(pos) < 100:
                 continue
         i += 1
-        gluers.append(Gluer(x, y, screen))
+        gluers.append(Gluer(x, y, screen, sim_speed))
 
     for i in range(rover_count):
         x = random.randint(0, 500)
         y = random.randint(0, 500)
-        rovers.append(Rover(x, y, screen, gluers, brick_pile))
+        rovers.append(Rover(x, y, screen, gluers, brick_pile, sim_speed))
 
 
 def draw():
     screen.fill((255, 255, 255))
+    house.draw_goal()
     house.draw()
 
     pile.draw()

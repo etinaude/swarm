@@ -39,6 +39,10 @@ class House:
             if brick.placed:
                 brick.draw()
 
+    def draw_goal(self):
+        for brick in self.bricks:
+            brick.draw_outline()
+
     def detect_collision(self):
         pass
 

@@ -10,6 +10,16 @@ class Brick:
         self.placed = False
         self.has_adhesive = False
 
+    def draw_outline(self):
+        outline = (22, 22, 22)
+        location = self.get_location()
+        pygame.draw.rect(
+            self.screen,
+            outline,
+            location,
+            width=1,
+        )
+
     def draw(self):
         color = (79, 39, 2) if self.pos.layer % 2 else (97, 47, 1)
         outline = (150, 73, 2)

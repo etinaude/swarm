@@ -1,8 +1,6 @@
 from position import Position
 import pygame  # type: ignore
-from specs import brick_size
 
-glue_time = 3 * 1000
 size = [20, 20]
 
 # idle
@@ -14,11 +12,11 @@ size = [20, 20]
 
 
 class Gluer:
-    def __init__(self, x, y, screen, sim_speed=10):
+    def __init__(self, x, y, screen, sim_speed=1):
         self.pos = Position(x, y)
         self.screen = screen
-        self.sim_speed = sim_speed
 
+        self.glue_time = (3 * 1000) / sim_speed
         self.status = "idle"
         self.glue_left = 100
         self.brick = None
@@ -44,7 +42,7 @@ class Gluer:
         if self.status != "working":
             return
 
-        if pygame.time.get_ticks() - self.time_stamp < glue_time:
+        if pygame.time.get_ticks() - self.time_stamp < self.glue_time:
             return
 
         self.glue_left -= 1
