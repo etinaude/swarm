@@ -65,7 +65,7 @@ def init_robots():
             if drone.pos.get_dist(pos) < 100:
                 continue
         i += 1
-        drones.append(Drone(x, y, screen, sim_speed))
+        drones.append(Drone(x, y, state))
 
     for i in range(rover_count):
         x = random.randint(0, 500)
@@ -79,6 +79,9 @@ def draw():
     house.draw()
 
     pile.draw()
+
+    for brick in state.loose_bricks:
+        brick.draw()
 
     for rover in rovers:
         rover.draw()
@@ -94,9 +97,12 @@ def draw():
 
 
 def step():
+    state.canidate_bricks = house.get_canidate_bricks()
     for rover in rovers:
-        state.canidate_bricks = house.get_canidate_bricks()
         rover.make_move()
+
+    for drone in drones:
+        drone.make_move()
 
     for gluer in gluers:
         gluer.update()

@@ -1,4 +1,3 @@
-from brick import Brick
 from position import Position
 import pygame  # type: ignore
 
@@ -11,15 +10,15 @@ size = [20, 20]
 
 
 class Drone:
-    def __init__(self, x, y, screen, sim_speed=1):
+    def __init__(self, x, y, global_state):
         self.pos = Position(x, y)
-        self.screen = screen
 
         self.state = "idle"
         self.battery = 100
         self.brick = None
         self.target = None
-        self.speed = 5 * sim_speed
+        self.speed = 2 * global_state.sim_speed
+        self.global_state = global_state
 
     def draw(self):
         color = (120, 120, 20)
@@ -29,7 +28,7 @@ class Drone:
             self.brick.draw()
 
         location = (self.pos.x, self.pos.y, size[0], size[1])
-        pygame.draw.rect(self.screen, color, location)
+        pygame.draw.rect(self.global_state.screen, color, location)
 
     def __repr__(self):
         return f"Drone - ({self.pos.x}, {self.pos.y})"
@@ -45,24 +44,36 @@ class Drone:
             self.place_brick()
 
     def get_brick(self):
-        self.target = self.brick_pile.copy_pos()
-        if self.pos.get_dist(self.target) > 10:
+        poses = list(map(lambda x: x.pos, self.global_state.loose_bricks))
+        self.target = self.pos.find_closest(poses)
+
+        if self.target is None:
+            self.state = "idle"
+            return
+
+        if self.pos.get_dist(self.target) > self.speed:
             self.move_towards_target()
         else:
-            self.brick = Brick(self.pos.x, self.pos.y, 0, 0, self.screen)
+            # find index of target in loose_bricks
+            loose_bricks = self.global_state.loose_bricks
+            for i in range(len(loose_bricks)):
+                if loose_bricks[i].pos == self.target:
+                    self.brick = loose_bricks[i]
+                    self.global_state.loose_bricks.pop(i)
+                    break
 
     def place_brick(self):
-        poses = list(map(lambda x: x.pos, self.state.canidate_bricks))
+        poses = list(map(lambda x: x.pos, self.global_state.canidate_bricks))
         self.target = self.pos.find_closest(poses)
 
         if self.target is None:
             self.state = "idle"
 
-        if self.pos.get_dist(self.target) > 10:
+        if self.pos.get_dist(self.target) > self.speed:
             self.move_towards_target()
 
         print("Placing brick at", self.target.x, self.target.y)
-        self.state.house.place_brick(self.target)
+        self.global_state.house.place_brick(self.target)
         self.brick = None
 
     def get_target_distance(self):

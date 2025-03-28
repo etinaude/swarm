@@ -1,3 +1,4 @@
+import random
 from brick import Brick
 from position import Position
 import pygame  # type: ignore
@@ -42,7 +43,7 @@ class Rover:
         return f"Rover - ({self.pos.x}, {self.pos.y})"
 
     def make_move(self):
-        decide_next_task(self)
+        self.decide_next_task()
         self.battery -= 1
 
         if self.state == "getting_brick":
@@ -65,16 +66,16 @@ class Rover:
             self.brick = Brick(self.pos.x, self.pos.y, 0, 0, self.global_state.screen)
 
     def place_brick(self):
-        poses = list(map(lambda x: x.pos, self.global_state.canidate_bricks))
-        self.target = self.pos.find_closest(poses)
 
         if self.target is None:
             self.state = "idle"
 
-        if self.pos.get_dist(self.target) > self.speed:
+        if self.pos.get_dist(self.target) > self.speed + 50:
             self.move_towards_target()
         else:
-            self.global_state.house.place_brick(self.target)
+            self.brick.pos = self.target.copy_pos()
+            self.global_state.loose_bricks.append(self.brick)
+            # self.global_state.house.place_brick(self.target)
             self.brick = None
 
     def get_target_distance(self):
@@ -115,6 +116,7 @@ class Rover:
         self.target = gluer.pos.copy_pos()
         self.move_towards_target()
         self.brick = gluer.give_brick()
+        self.target = None
 
     def move_towards_target(self):
         direction = self.pos.get_direction(self.target)
@@ -125,13 +127,17 @@ class Rover:
             self.pos.x += direction[0] * self.speed
             self.pos.y += direction[1] * self.speed
 
+    def decide_next_task(self):
+        if self.brick is None and self.state != "waiting":
+            self.state = "getting_brick"
 
-def decide_next_task(self):
-    if self.brick is None and self.state != "waiting":
-        self.state = "getting_brick"
+        if self.brick is not None:
+            if self.brick.has_adhesive:
+                self.state = "placing_brick"
+                if self.target is None:
+                    self.target = random.choice(
+                        self.global_state.canidate_bricks
+                    ).pos.copy_pos()
 
-    if self.brick is not None:
-        if self.brick.has_adhesive:
-            self.state = "placing_brick"
-        else:
-            self.state = "glueing"
+            else:
+                self.state = "glueing"
