@@ -1,5 +1,8 @@
 from brick import Brick
-from specs import brick_size, house_size, top_left
+from specs import brick_size
+
+house_size = [500, 350, 5]
+top_left = [100, 300]
 
 
 class House:

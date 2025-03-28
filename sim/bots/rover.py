@@ -18,17 +18,15 @@ size = [30, 30]
 
 
 class Rover:
-    def __init__(self, x, y, screen, gluers, brick_pile, sim_speed=1):
+    def __init__(self, x, y, state):
         self.pos = Position(x, y)
-        self.screen = screen
-        self.gluers = gluers
+        self.global_state = state
 
         self.state = "idle"
         self.battery = 100
         self.brick = None
         self.target = None
-        self.brick_pile = brick_pile
-        self.speed = 10 * sim_speed
+        self.speed = 10 * state.sim_speed
 
     def draw(self):
         color = (20, 120, 20)
@@ -38,12 +36,12 @@ class Rover:
             self.brick.draw()
 
         location = (self.pos.x, self.pos.y, size[0], size[1])
-        pygame.draw.rect(self.screen, color, location)
+        pygame.draw.rect(self.global_state.screen, color, location)
 
     def __repr__(self):
         return f"Rover - ({self.pos.x}, {self.pos.y})"
 
-    def make_move(self, canidate_bricks, house):
+    def make_move(self):
         decide_next_task(self)
         self.battery -= 1
 
@@ -54,43 +52,38 @@ class Rover:
             self.glue_brick()
 
         if self.state == "placing_brick":
-            canidate_bricks = self.place_brick(house, canidate_bricks)
+            self.place_brick()
 
         if self.state == "waiting":
             self.wait_for_gluer()
 
-        return canidate_bricks
-
     def get_brick(self):
-        self.target = self.brick_pile.copy_pos()
+        self.target = self.global_state.brick_pile.copy_pos()
         if self.pos.get_dist(self.target) > self.speed:
             self.move_towards_target()
         else:
-            self.brick = Brick(self.pos.x, self.pos.y, 0, 0, self.screen)
+            self.brick = Brick(self.pos.x, self.pos.y, 0, 0, self.global_state.screen)
 
-    def place_brick(self, house, canidate_bricks):
-        poses = list(map(lambda x: x.pos, canidate_bricks))
+    def place_brick(self):
+        poses = list(map(lambda x: x.pos, self.global_state.canidate_bricks))
         self.target = self.pos.find_closest(poses)
 
         if self.target is None:
             self.state = "idle"
-            return canidate_bricks
 
         if self.pos.get_dist(self.target) > self.speed:
             self.move_towards_target()
-            return canidate_bricks
 
         # house.place_brick(self.target)
         self.brick = None
-        canidate_bricks = list(filter(lambda x: x.pos != self.target, canidate_bricks))
-
-        return canidate_bricks
 
     def get_target_distance(self):
         return self.pos.get_dist(self.target)
 
     def glue_brick(self):
-        idle_gluers = list(filter(lambda x: x.status == "idle", self.gluers))
+        idle_gluers = list(
+            filter(lambda x: x.status == "idle", self.global_state.gluers)
+        )
         poses = list(map(lambda x: x.pos, idle_gluers))
         self.target = self.pos.find_closest(poses)
         if self.target is None:
@@ -111,7 +104,7 @@ class Rover:
         gluers = list(
             filter(
                 lambda x: x.pos.get_dist(self.pos) < self.speed and x.status == "ready",
-                self.gluers,
+                self.global_state.gluers,
             )
         )
         if gluers == []:

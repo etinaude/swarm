@@ -10,7 +10,7 @@ size = [20, 20]
 # placing brick
 
 
-class Rover:
+class Drone:
     def __init__(self, x, y, screen, sim_speed=1):
         self.pos = Position(x, y)
         self.screen = screen
@@ -34,7 +34,7 @@ class Rover:
     def __repr__(self):
         return f"Drone - ({self.pos.x}, {self.pos.y})"
 
-    def make_move(self, canidate_bricks, house):
+    def make_move(self):
         decide_next_task(self)
         self.battery -= 1
 
@@ -42,9 +42,7 @@ class Rover:
             self.get_brick()
 
         if self.state == "placing_brick":
-            canidate_bricks = self.place_brick(house, canidate_bricks)
-
-        return canidate_bricks
+            self.place_brick()
 
     def get_brick(self):
         self.target = self.brick_pile.copy_pos()
@@ -53,24 +51,19 @@ class Rover:
         else:
             self.brick = Brick(self.pos.x, self.pos.y, 0, 0, self.screen)
 
-    def place_brick(self, house, canidate_bricks):
-        poses = list(map(lambda x: x.pos, canidate_bricks))
+    def place_brick(self):
+        poses = list(map(lambda x: x.pos, self.state.canidate_bricks))
         self.target = self.pos.find_closest(poses)
 
         if self.target is None:
             self.state = "idle"
-            return canidate_bricks
 
         if self.pos.get_dist(self.target) > 10:
             self.move_towards_target()
-            return canidate_bricks
 
         print("Placing brick at", self.target.x, self.target.y)
-        house.place_brick(self.target)
+        self.state.house.place_brick(self.target)
         self.brick = None
-        canidate_bricks = list(filter(lambda x: x.pos != self.target, canidate_bricks))
-
-        return canidate_bricks
 
     def get_target_distance(self):
         return self.pos.get_dist(self.target)

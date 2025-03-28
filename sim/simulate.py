@@ -1,25 +1,27 @@
 import json
 import random
+from bots.global_state import State
 from position import Position
 import pygame  # type: ignore
-from specs import rover_count, gluer_count
+from specs import rover_count, gluer_count, drone_count
 from brick import Brick
-from bots.house import House
+from bots.house import House, top_left, house_size
 from bots.gluer import Gluer
 from bots.rover import Rover
+from bots.drone import Drone
 
 
 pygame.init()
 screen = pygame.display.set_mode((1000, 1000))
 clock = pygame.time.Clock()
-sim_speed = 10
+sim_speed = 1
 
 house = House(screen)
 
 rovers = []
 gluers = []
-climbers = []
-
+drones = []
+running = True
 brick_pile = Position(100, 100)
 
 pile = Brick(
@@ -53,10 +55,22 @@ def init_robots():
         i += 1
         gluers.append(Gluer(x, y, screen, sim_speed))
 
+    i = 0
+    while i < drone_count:
+        x = random.randint(top_left[0], house_size[0] + top_left[0])
+        y = random.randint(top_left[1], house_size[1] + top_left[1])
+
+        pos = Position(x, y)
+        for drone in drones:
+            if drone.pos.get_dist(pos) < 100:
+                continue
+        i += 1
+        drones.append(Drone(x, y, screen, sim_speed))
+
     for i in range(rover_count):
         x = random.randint(0, 500)
         y = random.randint(0, 500)
-        rovers.append(Rover(x, y, screen, gluers, brick_pile, sim_speed))
+        rovers.append(Rover(x, y, state))
 
 
 def draw():
@@ -72,19 +86,18 @@ def draw():
     for gluer in gluers:
         gluer.draw()
 
-    for climber in climbers:
-        climber.draw()
+    for drone in drones:
+        drone.draw()
 
     pygame.display.flip()
     clock.tick(10)
 
 
 def step():
-    global canidate_bricks
     for rover in rovers:
-        if canidate_bricks == []:
-            canidate_bricks = house.get_canidate_bricks()
-        canidate_bricks = rover.make_move(canidate_bricks, house)
+        if state.canidate_bricks == []:
+            state.canidate_bricks = house.get_canidate_bricks()
+        rover.make_move()
 
     for gluer in gluers:
         gluer.update()
@@ -92,13 +105,10 @@ def step():
     draw()
 
 
-init_robots()
-
-running = True
-canidate_bricks = []
-
 if __name__ == "__main__":
+    state = State(gluers, brick_pile, house, screen, sim_speed)
 
+    init_robots()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -106,9 +116,9 @@ if __name__ == "__main__":
 
         for i in range(100):
             step()
-            if len(canidate_bricks) == 0:
-                canidate_bricks = house.get_canidate_bricks()
-                if len(canidate_bricks) == 0:
+            if len(state.canidate_bricks) == 0:
+                state.canidate_bricks = house.get_canidate_bricks()
+                if len(state.canidate_bricks) == 0:
                     print("Done")
 
             pygame.display.flip()
