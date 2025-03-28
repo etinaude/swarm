@@ -53,16 +53,41 @@ class House:
         not_placed = list(filter(lambda x: not (x.placed), self.bricks))
         return min([brick.pos.layer for brick in not_placed] + [999])
 
-    def get_canidate_bricks(self):
+    def get_rover_bricks(self):
         current_layer = self.current_layer()
         return list(
             filter(
-                lambda x: ((not x.placed) and x.pos.layer == current_layer), self.bricks
+                lambda x: (
+                    (not x.placed)
+                    and x.pos.layer == current_layer
+                    and x.drone_claimed_by
+                    and not (x.rover_claimed_by)
+                ),
+                self.bricks,
+            )
+        )
+
+    def get_drone_bricks(self):
+        current_layer = self.current_layer()
+        return list(
+            filter(
+                lambda x: (
+                    (not x.placed)
+                    and x.pos.layer == current_layer
+                    and not (x.drone_claimed_by)
+                ),
+                self.bricks,
             )
         )
 
     def place_brick(self, target):
-        brick = list(filter(lambda x: x.pos == target, self.bricks))[0]
+        bricks = list(filter(lambda x: x.pos == target, self.bricks))
+
+        if bricks == []:
+            print("ERROR: No bricks found")
+            print(f"target: {target}")
+            return
+        brick = bricks[0]
 
         brick.placed = True
         brick.draw()

@@ -1,4 +1,5 @@
 import random
+import uuid
 from brick import Brick
 from position import Position
 import pygame  # type: ignore
@@ -28,6 +29,7 @@ class Rover:
         self.brick = None
         self.target = None
         self.speed = 10 * state.sim_speed
+        self.id = uuid.uuid4()
 
     def draw(self):
         color = (20, 120, 20)
@@ -135,7 +137,7 @@ class Rover:
                 self.state = "placing_brick"
                 if self.target is None:
                     self.target = random.choice(
-                        self.global_state.canidate_bricks
+                        self.global_state.house.get_rover_bricks()
                     ).pos.copy_pos()
 
             else:

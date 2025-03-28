@@ -21,6 +21,7 @@ class Drone:
         self.speed = 2 * global_state.sim_speed
         self.global_state = global_state
         self.id = uuid.uuid4()
+        self.wall_target = None
 
     def draw(self):
         color = (120, 120, 20)
@@ -45,15 +46,14 @@ class Drone:
         if self.state == "placing_brick":
             self.place_brick()
 
-    def get_brick(self):
+    def claim_brick(self, brick_list):
         possible_bricks = []
         found = False
-        for brick in self.global_state.loose_bricks:
-            if brick.claimed_by is self.id:
-                found = True
-            if brick.claimed_by is None:
+        for brick in brick_list:
+            if brick.drone_claimed_by is self.id:
+                return
+            if brick.drone_claimed_by is None:
                 possible_bricks.append(brick)
-                break
 
         if not found:
             if len(possible_bricks) == 0:
@@ -66,6 +66,9 @@ class Drone:
                     best_brick = brick
             self.target = best_brick.pos
             best_brick.claimed_by = self.id
+
+    def get_brick(self):
+        self.claim_brick(self.global_state.loose_bricks)
 
         if self.target is None:
             self.state = "idle"
@@ -83,18 +86,17 @@ class Drone:
                     break
 
     def place_brick(self):
-        poses = list(map(lambda x: x.pos, self.global_state.canidate_bricks))
-        self.target = self.pos.find_closest(poses)
-
-        if self.target is None:
+        if self.wall_target is None:
             self.state = "idle"
+            return
+        self.target = self.wall_target
 
-        if self.pos.get_dist(self.target) > self.speed:
+        if self.pos.get_dist(self.wall_target) > self.speed:
             self.move_towards_target()
-
         else:
-            self.global_state.house.place_brick(self.target)
+            self.global_state.house.place_brick(self.wall_target)
             self.brick = None
+            self.wall_target = None
 
     def move_towards_target(self):
         direction = self.pos.get_direction(self.target)
@@ -107,6 +109,18 @@ class Drone:
 
 
 def decide_next_task(self):
+    if not self.wall_target:
+        canidates = self.global_state.house.get_drone_bricks()
+        if canidates == []:
+            self.state = "idle"
+            return
+        closest = canidates[0]
+        for brick in canidates:
+            if self.pos.get_dist(brick.pos) < self.pos.get_dist(closest.pos):
+                closest = brick
+        self.wall_target = closest.pos
+        closest.drone_claimed_by = self.id
+
     if self.brick is None:
         self.state = "getting_brick"
     else:

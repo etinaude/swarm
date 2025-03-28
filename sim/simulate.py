@@ -14,7 +14,7 @@ from bots.drone import Drone
 pygame.init()
 screen = pygame.display.set_mode((1000, 1000))
 clock = pygame.time.Clock()
-sim_speed = 1
+sim_speed = 2
 
 house = House(screen)
 
@@ -97,7 +97,6 @@ def draw():
 
 
 def step():
-    state.canidate_bricks = house.get_canidate_bricks()
     for rover in rovers:
         rover.make_move()
 
@@ -122,8 +121,7 @@ if __name__ == "__main__":
         for i in range(100):
             step()
             if len(state.canidate_bricks) == 0:
-                state.canidate_bricks = house.get_canidate_bricks()
-                if len(state.canidate_bricks) == 0:
+                if len(house.get_rover_bricks()) == 0:
                     print("Done")
 
             pygame.display.flip()
