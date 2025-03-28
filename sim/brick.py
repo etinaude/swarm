@@ -9,6 +9,7 @@ class Brick:
         self.pos = Position(x, y, layer, rotation)
         self.placed = False
         self.has_adhesive = False
+        self.claimed_by = None
 
     def draw_outline(self):
         outline = (22, 22, 22)

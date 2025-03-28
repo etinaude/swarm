@@ -26,8 +26,16 @@ class Position:
         )
 
     def get_dist(self, other):
-        x_diff = other.x - self.x
-        y_diff = other.y - self.y
+
+        if isinstance(other, Position):
+            x = other.x
+            y = other.y
+        else:
+            x = other.pos.x
+            y = other.pos.y
+
+        x_diff = x - self.x
+        y_diff = y - self.y
         return (x_diff**2 + y_diff**2) ** 0.5
 
     def get_direction(self, other):
@@ -46,6 +54,7 @@ class Position:
     def find_closest(self, others):
         if not others:
             return None
+
         closest = others[0]
         closest_dist = self.get_dist(closest)
         for other in others:

@@ -70,12 +70,11 @@ class Rover:
         if self.target is None:
             self.state = "idle"
 
-        if self.pos.get_dist(self.target) > self.speed + 50:
+        if self.pos.get_dist(self.target) > self.speed + 60:
             self.move_towards_target()
         else:
-            self.brick.pos = self.target.copy_pos()
+            self.brick.pos = self.pos.copy_pos()
             self.global_state.loose_bricks.append(self.brick)
-            # self.global_state.house.place_brick(self.target)
             self.brick = None
 
     def get_target_distance(self):
