@@ -68,8 +68,8 @@ def init_robots():
         drones.append(Drone(x, y, state))
 
     for i in range(rover_count):
-        x = random.randint(0, 500)
-        y = random.randint(0, 500)
+        x = random.randint(0, 200)
+        y = random.randint(0, 200)
         rovers.append(Rover(x, y, state))
 
 
@@ -97,6 +97,8 @@ def draw():
 
 
 def step():
+    draw()
+
     for rover in rovers:
         rover.make_move()
 
@@ -105,8 +107,6 @@ def step():
 
     for gluer in gluers:
         gluer.update()
-
-    draw()
 
 
 if __name__ == "__main__":

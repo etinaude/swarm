@@ -18,6 +18,8 @@ class Position:
         return f"({round(self.x, 2)}, {round(self.y, 2)}, {round(self.layer, 2)}, {round(self.rotation, 2)})"
 
     def __eq__(self, other):
+        if not isinstance(other, Position):
+            other = other.pos
         return (
             self.x == other.x
             and self.y == other.y
@@ -58,16 +60,24 @@ class Position:
         closest = others[0]
         closest_dist = self.get_dist(closest)
         for other in others:
-            if self.get_dist(other) < closest_dist:
+            if not isinstance(other, Position):
+                other_pos = other.pos
+            if self.get_dist(other_pos) < closest_dist:
                 closest = other
-                closest_dist = self.get_dist(other)
+                closest_dist = self.get_dist(other_pos)
         return closest
 
-    def move_towards_target(self, speed, target):
+    def move_towards(self, speed, target):
         direction = self.get_direction(target)
         distance = self.get_dist(target)
         if distance < speed:
             self = target.copy_pos()
+            return True
         else:
             self.x += direction[0] * speed
             self.y += direction[1] * speed
+            return False
+
+    def goto(self, x, y):
+        self.x = x
+        self.y = y

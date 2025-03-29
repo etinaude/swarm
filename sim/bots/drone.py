@@ -84,7 +84,7 @@ class Drone:
             self.target.y += 10
 
         if self.pos.get_dist(self.target) > self.speed:
-            self.pos.move_towards_target(self.speed, self.target)
+            self.pos.move_towards(self.speed, self.target)
         else:
             # find index of target in loose_bricks
             loose_bricks = self.global_state.loose_bricks
@@ -102,7 +102,7 @@ class Drone:
         self.target = self.wall_target
 
         if self.pos.get_dist(self.wall_target) > self.speed:
-            self.pos.move_towards_target(self.speed, self.target)
+            self.pos.move_towards(self.speed, self.target)
         else:
             self.global_state.house.place_brick(self.wall_target)
             self.brick = None

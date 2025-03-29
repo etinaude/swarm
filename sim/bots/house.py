@@ -11,6 +11,10 @@ class House:
         self.bricks = []
         self.screen = screen
         self.make_structure()
+        self.top_left = top_left
+        self.bottom_right = [top_left[0] + house_size[0], top_left[1] + house_size[1]]
+        self.maze = []
+        self.make_maze()
 
     def make_structure(self):
         for layer in range(house_size[2]):
@@ -100,3 +104,20 @@ class House:
 
         brick.placed = True
         brick.draw()
+
+    def make_maze(self):
+        self.maze = []
+        empty_row = [0] * 1000
+        house_row = []
+
+        for x in range(1000):
+            if x < top_left[0] or x > top_left[0] + house_size[0]:
+                house_row.append(0)
+            else:
+                house_row.append(1)
+
+        for y in range(1000):
+            if y < top_left[1] or y > top_left[1] + house_size[1]:
+                self.maze.append(empty_row)
+            else:
+                self.maze.append(house_row)
