@@ -29,7 +29,7 @@ class Rover:
         self.battery = 100
         self.brick = None
         self.target = None
-        self.speed = 10 * state.sim_speed
+        self.speed = 6 * state.sim_speed
         self.id = uuid.uuid4()
         self.path = None
 
@@ -88,7 +88,7 @@ class Rover:
         print(f"Canidates: {canidates}")
         closest = self.pos.find_closest(canidates).pos.copy_pos()
 
-        if closest is not self.target:
+        if not closest == self.target:
             self.path = None
             self.target = closest
 
@@ -161,12 +161,15 @@ class Rover:
                 self.state = "glueing"
 
     def move_along_path(self):
-        for i in range(self.speed):
-            if self.path is None or len(self.path) < 1:
-                print("Arrived")
-                self.path = None
-                return True
-            pos = self.path.pop(0)
+        if self.path is None or len(self.path) < self.speed + 1:
+            last_pos = self.path[-1]
+            self.pos.goto(last_pos[0], last_pos[1])
+            print("LAST")
+            return True
+
+        # remove first speed elements
+        pos = self.path[self.speed]
+        self.path = self.path[self.speed :]
         self.pos.goto(pos[0], pos[1])
         print(f"Moving to {pos[0]}, {pos[1]}")
 

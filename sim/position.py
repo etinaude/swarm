@@ -18,6 +18,8 @@ class Position:
         return f"({round(self.x, 2)}, {round(self.y, 2)}, {round(self.layer, 2)}, {round(self.rotation, 2)})"
 
     def __eq__(self, other):
+        if other is None:
+            return False
         if not isinstance(other, Position):
             other = other.pos
         return (

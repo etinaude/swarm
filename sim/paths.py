@@ -109,6 +109,8 @@ def find_path(start, target, speed, state=None):
         print("No path found")
         return None
 
+    print(len(a_star_path))
+
     return a_star_path
 
 

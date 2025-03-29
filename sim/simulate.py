@@ -58,7 +58,7 @@ def init_robots():
     i = 0
     while i < drone_count:
         x = random.randint(top_left[0], house_size[0] + top_left[0])
-        y = random.randint(top_left[1], house_size[1] + top_left[1])
+        y = random.randint(700, 700)
 
         pos = Position(x, y)
         for drone in drones:
