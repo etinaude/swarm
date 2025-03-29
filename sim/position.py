@@ -62,3 +62,12 @@ class Position:
                 closest = other
                 closest_dist = self.get_dist(other)
         return closest
+
+    def move_towards_target(self, speed, target):
+        direction = self.get_direction(target)
+        distance = self.get_dist(target)
+        if distance < speed:
+            self = target.copy_pos()
+        else:
+            self.x += direction[0] * speed
+            self.y += direction[1] * speed

@@ -1,4 +1,3 @@
-import random
 import uuid
 from brick import Brick
 from position import Position
@@ -63,7 +62,7 @@ class Rover:
     def get_brick(self):
         self.target = self.global_state.brick_pile.copy_pos()
         if self.pos.get_dist(self.target) > self.speed:
-            self.move_towards_target()
+            self.pos.move_towards_target(self.speed, self.target)
         else:
             self.brick = Brick(self.pos.x, self.pos.y, 0, 0, self.global_state.screen)
 
@@ -84,7 +83,7 @@ class Rover:
             self.state = "idle"
 
         if self.pos.get_dist(self.target) > self.speed + 60:
-            self.move_towards_target()
+            self.pos.move_towards_target(self.speed, self.target)
         else:
             self.brick.pos = self.pos.copy_pos()
             self.global_state.loose_bricks.append(self.brick)
@@ -105,7 +104,7 @@ class Rover:
         closest_gluer = list(filter(lambda x: x.pos == self.target, idle_gluers))[0]
 
         if self.pos.get_dist(self.target) > self.speed:
-            self.move_towards_target()
+            self.pos.move_towards_target(self.speed, self.target)
         else:
             closest_gluer.glue(self.brick)
 
@@ -126,18 +125,9 @@ class Rover:
         gluer = gluers[0]
 
         self.target = gluer.pos.copy_pos()
-        self.move_towards_target()
+        self.pos.move_towards_target(self.speed, self.target)
         self.brick = gluer.give_brick()
         self.target = None
-
-    def move_towards_target(self):
-        direction = self.pos.get_direction(self.target)
-        distance = self.pos.get_dist(self.target)
-        if distance < self.speed:
-            self.pos = self.target
-        else:
-            self.pos.x += direction[0] * self.speed
-            self.pos.y += direction[1] * self.speed
 
     def decide_next_task(self):
         if self.brick is None and self.state != "waiting":
