@@ -53,7 +53,10 @@ class Drone:
             if brick.drone_claimed_by is self.id:
                 return
             if brick.drone_claimed_by is None:
-                possible_bricks.append(brick)
+                # if disncae from brick to wall target < 100
+                if self.wall_target is not None:
+                    if brick.pos.get_dist(self.wall_target) < 100:
+                        possible_bricks.append(brick)
 
         if not found:
             if len(possible_bricks) == 0:

@@ -68,6 +68,17 @@ class Rover:
             self.brick = Brick(self.pos.x, self.pos.y, 0, 0, self.global_state.screen)
 
     def place_brick(self):
+        if self.target is None:
+            canidates = self.global_state.house.get_rover_bricks()
+            if canidates == []:
+                self.state = "idle"
+                return
+            closest = canidates[0]
+            for brick in canidates:
+                if self.pos.get_dist(brick.pos) < self.pos.get_dist(closest.pos):
+                    closest = brick
+            self.target = closest.pos.copy_pos()
+            closest.rover_claimed_by = self.id
 
         if self.target is None:
             self.state = "idle"
@@ -135,10 +146,5 @@ class Rover:
         if self.brick is not None:
             if self.brick.has_adhesive:
                 self.state = "placing_brick"
-                if self.target is None:
-                    self.target = random.choice(
-                        self.global_state.house.get_rover_bricks()
-                    ).pos.copy_pos()
-
             else:
                 self.state = "glueing"

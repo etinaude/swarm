@@ -1,3 +1,4 @@
+from calendar import c
 from brick import Brick
 from specs import brick_size
 
@@ -55,30 +56,38 @@ class House:
 
     def get_rover_bricks(self):
         current_layer = self.current_layer()
-        return list(
-            filter(
-                lambda x: (
-                    (not x.placed)
-                    and x.pos.layer == current_layer
-                    and x.drone_claimed_by
-                    and not (x.rover_claimed_by)
-                ),
-                self.bricks,
+        canidates = []
+        while canidates == [] and current_layer < house_size[2]:
+            canidates = list(
+                filter(
+                    lambda x: (
+                        (not x.placed)
+                        and x.pos.layer == current_layer
+                        and x.drone_claimed_by
+                        and not (x.rover_claimed_by)
+                    ),
+                    self.bricks,
+                )
             )
-        )
+            current_layer += 1
+        return canidates
 
     def get_drone_bricks(self):
         current_layer = self.current_layer()
-        return list(
-            filter(
-                lambda x: (
-                    (not x.placed)
-                    and x.pos.layer == current_layer
-                    and not (x.drone_claimed_by)
-                ),
-                self.bricks,
+        canidates = []
+        while canidates == [] and current_layer < house_size[2]:
+            canidates = list(
+                filter(
+                    lambda x: (
+                        (not x.placed)
+                        and x.pos.layer == current_layer
+                        and not (x.drone_claimed_by)
+                    ),
+                    self.bricks,
+                )
             )
-        )
+            current_layer += 1
+        return canidates
 
     def place_brick(self, target):
         bricks = list(filter(lambda x: x.pos == target, self.bricks))

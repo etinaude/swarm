@@ -122,7 +122,8 @@ if __name__ == "__main__":
             step()
             if len(state.canidate_bricks) == 0:
                 if len(house.get_rover_bricks()) == 0:
-                    print("Done")
+                    pass
+                    # print("Done")
 
             pygame.display.flip()
             clock.tick(120)
