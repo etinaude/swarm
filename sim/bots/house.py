@@ -121,3 +121,11 @@ class House:
                 self.maze.append(empty_row)
             else:
                 self.maze.append(house_row)
+
+    def draw_maze(self):
+        for y in range(len(self.maze)):
+            for x in range(len(self.maze[y])):
+                if self.maze[y][x] == 1:
+                    self.screen.set_at((x, y), (0, 0, 0))
+                else:
+                    self.screen.set_at((x, y), (255, 255, 255))
