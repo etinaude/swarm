@@ -17,7 +17,8 @@ class Node:
         return self.position == other.position
 
 
-def a_star(start, end, maze):
+def a_star(start, end, state):
+    maze = state.house.maze
     start_node = Node(None, start)
     start_node.g = start_node.h = start_node.f = 0
     end_node = Node(None, end)
@@ -54,6 +55,10 @@ def a_star(start, end, maze):
             (0, 1),
             (-1, 0),
             (1, 0),
+            (-1, -1),
+            (-1, 1),
+            (1, -1),
+            (1, 1),
         ]:  # Adjacent squares
             node_position = (
                 current_node.position[0] + new_position[0],
@@ -68,6 +73,8 @@ def a_star(start, end, maze):
                 continue
             if maze[node_position[0]][node_position[1]] != 0:
                 print("WALL")
+                print(len(open_list))
+                display_node(node_position, state.screen)
                 continue
             new_node = Node(current_node, node_position)
             children.append(new_node)
@@ -76,6 +83,7 @@ def a_star(start, end, maze):
         for child in children:
             for closed_child in closed_list:
                 if child == closed_child:
+                    print("Closed child")
                     continue
             child.g = current_node.g + 1
             child.h = ((child.position[0] - end_node.position[0]) ** 2) + (
@@ -87,8 +95,13 @@ def a_star(start, end, maze):
                     continue
             open_list.append(child)
 
+    print("Open list length: ", len(open_list))
+    print("Closed list length: ", len(closed_list))
+    print("CANT FIND PATH")
+    return []
 
-def find_path(start, target, speed, state=None):
+
+def find_path(start, target, state=None):
     if not isinstance(target, Position):
         target = target.pos
 
@@ -98,11 +111,11 @@ def find_path(start, target, speed, state=None):
     start_tuple = (start.x, start.y)
     target_tuple = (target.x, target.y)
 
-    a_star_path = a_star(start_tuple, target_tuple, state.house.maze)
+    a_star_path = a_star(start_tuple, target_tuple, state)
 
     if a_star_path is None or len(a_star_path) == 0:
         print("No path found")
-        return None
+        return []
 
     print(len(a_star_path))
 
@@ -128,3 +141,10 @@ def draw_point(x, y, screen):
 def draw_lineString(line, screen):
     x, y = line.xy
     pygame.draw.lines(screen, (0, 0, 255), False, list(zip(x, y)), 2)
+
+
+def display_node(node, screen):
+    x, y = node
+    pygame.draw.circle(screen, (0, 255, 0), (x, y), 2)
+    pygame.display.flip()
+    pygame.time.delay(100)

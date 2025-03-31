@@ -5,7 +5,7 @@ from position import Position
 import pygame  # type: ignore
 from shapely.geometry import LineString
 
-size = [30, 30]
+size = [10, 10]
 
 # ~~~ STATES ~~~
 # idle
@@ -71,7 +71,7 @@ class Rover:
     def get_brick(self):
         if self.path is None:
             self.path = find_path(
-                self.pos, self.global_state.brick_pile, self.speed, self.global_state
+                self.pos, self.global_state.brick_pile, self.global_state
             )
 
         arrived = self.move_along_path()
@@ -93,7 +93,7 @@ class Rover:
             self.target = closest
 
         if self.path is None:
-            self.path = find_path(self.pos, self.target, self.speed, self.global_state)
+            self.path = find_path(self.pos, self.target, self.global_state)
 
         arrived = self.move_along_path()
         if arrived:
@@ -120,7 +120,7 @@ class Rover:
             self.target = target
 
         if self.path is None:
-            self.path = find_path(self.pos, self.target, self.speed, self.global_state)
+            self.path = find_path(self.pos, self.target, self.global_state)
 
         arrived = self.move_along_path()
         if arrived:

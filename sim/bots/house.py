@@ -1,9 +1,5 @@
-from calendar import c
 from brick import Brick
-from specs import brick_size
-
-house_size = [500, 350, 5]
-top_left = [100, 300]
+from specs import brick_size, map_size, house_size, top_left
 
 
 class House:
@@ -106,18 +102,20 @@ class House:
         brick.draw()
 
     def make_maze(self):
+        # maze is mapped down 10:1
         self.maze = []
-        empty_row = [0] * 1000
+        empty_row = [0] * (map_size[0])
         house_row = []
+        padding = 10
 
-        for x in range(1000):
-            if x < top_left[0] or x > top_left[0] + house_size[0]:
+        for y in range(map_size[0]):
+            if y < top_left[0] or y > (top_left[0] + house_size[0] + brick_size[0]):
                 house_row.append(0)
             else:
                 house_row.append(1)
 
-        for y in range(1000):
-            if y < top_left[1] or y > top_left[1] + house_size[1]:
+        for x in range(map_size[1]):
+            if x < top_left[1] or y > (top_left[1] + house_size[1] + brick_size[1]):
                 self.maze.append(empty_row)
             else:
                 self.maze.append(house_row)

@@ -3,7 +3,7 @@ import random
 from bots.global_state import State
 from position import Position
 import pygame  # type: ignore
-from specs import rover_count, gluer_count, drone_count
+from specs import rover_count, gluer_count, drone_count, map_size
 from brick import Brick
 from bots.house import House, top_left, house_size
 from bots.gluer import Gluer
@@ -12,7 +12,7 @@ from bots.drone import Drone
 
 
 pygame.init()
-screen = pygame.display.set_mode((1000, 1000))
+screen = pygame.display.set_mode((map_size[0], map_size[1]))
 clock = pygame.time.Clock()
 sim_speed = 2
 
@@ -22,7 +22,7 @@ rovers = []
 gluers = []
 drones = []
 running = True
-brick_pile = Position(100, 100)
+brick_pile = Position(10, 10)
 
 pile = Brick(
     brick_pile.x,
@@ -45,8 +45,8 @@ def load_data():
 def init_robots():
     i = 0
     while i < gluer_count:
-        x = random.randint(200, 500)
-        y = random.randint(0, 200)
+        x = random.randint(200, map_size[0] - 200)
+        y = random.randint(0, 100)
 
         pos = Position(x, y)
         for gluer in gluers:
@@ -58,7 +58,7 @@ def init_robots():
     i = 0
     while i < drone_count:
         x = random.randint(top_left[0], house_size[0] + top_left[0])
-        y = random.randint(700, 700)
+        y = random.randint(top_left[1], house_size[1] + top_left[1])
 
         pos = Position(x, y)
         for drone in drones:
@@ -68,8 +68,8 @@ def init_robots():
         drones.append(Drone(x, y, state))
 
     for i in range(rover_count):
-        x = random.randint(0, 200)
-        y = random.randint(0, 200)
+        x = random.randint(0, top_left[0])
+        y = random.randint(0, top_left[1])
         rovers.append(Rover(x, y, state))
 
 
