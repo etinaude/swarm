@@ -1,18 +1,66 @@
 #include <Arduino.h>
+#include <motor.h>
 
-// put function declarations here:
-int myFunction(int, int);
+// OP <parm> <parm>
+// eg
+// l 0 1000
+// g=grip <dir> <steps>
+// l=lift <dir> <steps>
+// s=speed <speed>
+// e=enable <enable>
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+Motor liftMotor(7, 5, 9);
+Motor gripMotor(10, 11, 12);
+
+void setup()
+{
+  Serial.begin(115200);
+  Serial.setTimeout(100);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void readSerial()
+{
+  if (Serial.available())
+  {
+    String s = Serial.readStringUntil('\n');
+    s.trim();
+    char op = s[0];
+    Serial.println(op);
+
+    if (op == 'l')
+    {
+      int dir = s.substring(2, 3).toInt();
+      int steps = s.substring(3).toInt();
+
+      liftMotor.move(steps, dir);
+    }
+
+    if (op == 'g')
+    {
+      int dir = s.substring(2, 3).toInt();
+      int steps = s.substring(3).toInt();
+
+      liftMotor.move(steps, dir);
+    }
+
+    if (op == 's')
+    {
+      int speedIn = s.substring(1).toInt();
+      liftMotor.setSpeed(speedIn);
+      gripMotor.setSpeed(speedIn);
+    }
+
+    if (op == 'e')
+    {
+      int en = s.substring(1, 2).toInt();
+      liftMotor.setEnable(en);
+      gripMotor.setEnable(en);
+    }
+  }
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void loop()
+{
+  readSerial();
+  delay(100);
 }
