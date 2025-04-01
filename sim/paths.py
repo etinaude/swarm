@@ -16,7 +16,7 @@ class Node:
         return self.position == other.position
 
 
-def a_star(start_pos, target, maze, ignore_walls=False):
+def a_star(start_pos, target, maze, speed=1):
     start = (int(start_pos.x), int(start_pos.y))
     end = (int(target.x), int(target.y))
     start_node = Node(None, start)
@@ -40,7 +40,11 @@ def a_star(start_pos, target, maze, ignore_walls=False):
         closed_list.append(current_node)
 
         # Found the goal
-        if current_node == end_node:
+        distance = ((current_node.position[0] - end_node.position[0]) ** 2 + (
+            current_node.position[1] - end_node.position[1]
+        ) ** 2) ** 0.5
+
+        if distance <= speed:
             path = []
             current = current_node
             while current is not None:
@@ -50,7 +54,6 @@ def a_star(start_pos, target, maze, ignore_walls=False):
 
         # Generate children
         children = []
-        speed = 1
         for new_position in [
             (0, -speed),
             (0, speed),
@@ -84,7 +87,6 @@ def a_star(start_pos, target, maze, ignore_walls=False):
         for child in children:
             for closed_child in closed_list:
                 if child == closed_child:
-                    print("Closed child")
                     continue
             child.g = current_node.g + 1
             child.h = ((child.position[0] - end_node.position[0]) ** 2) + (
@@ -102,14 +104,12 @@ def a_star(start_pos, target, maze, ignore_walls=False):
     return []
 
 
-def find_path(start, target, maze, ignore_walls=False):
-    a_star_path = a_star(start, target, maze, ignore_walls)
+def find_path(start, target, maze, speed=1):
+    a_star_path = a_star(start, target, maze, speed)
 
     if a_star_path is None or len(a_star_path) == 0:
         print("No path found")
         return []
-
-    print(len(a_star_path))
 
     return a_star_path
 

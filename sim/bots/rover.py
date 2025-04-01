@@ -53,11 +53,9 @@ class Rover:
     def __repr__(self):
         return f"Rover - ({self.pos.x}, {self.pos.y})"
 
-    def make_move(self, gluers):
+    def make_move(self, gluers, drones):
         # self.decide_next_task()
         self.battery -= 1
-
-        print(self.state)
 
         if self.state == "getting_brick":
             self.get_brick()
@@ -68,13 +66,16 @@ class Rover:
         if self.state == "wait_for_gluer":
             self.wait_for_gluer(gluers)
 
-        if self.state == "placing_brick":
-            self.place_brick()
+        if self.state == "goto_drone":
+            self.goto_drone(drones)
+
+        if self.state == "idle":
+            self.idle()
 
     def get_brick(self):
         if self.path is None:
             self.path = find_path(
-                self.pos, self.brick_pile, self.maze
+                self.pos, self.brick_pile, self.maze, self.speed
             )
 
         arrived = self.move_along_path()
@@ -99,16 +100,13 @@ class Rover:
             self.target = target.pos
 
         if self.path is None:
-            self.path = find_path(self.pos, self.target, self.maze)
+            self.path = find_path(self.pos, self.target, self.maze, self.speed)
 
         arrived = self.move_along_path()
         if arrived:
-            for glue in gluers:
-                if glue.pos == self.target:
-                    glue.glue(self.brick)
-                    self.brick = None
-                    self.state = "wait_for_gluer"
-                    break
+            target.glue(self.brick)
+            self.brick = None
+            self.state = "wait_for_gluer"
 
     def wait_for_gluer(self, gluers):
         # find gluers in raduis with state 'ready"
@@ -128,20 +126,49 @@ class Rover:
         self.brick = gluer.give_brick()
         self.target = None
         self.path = None
-        self.state = "placing_brick"
+        self.state = "goto_drone"
 
+    def goto_drone(self, drones):
+        idle_drones = list(
+            filter(lambda x: x.state == "waiting_for_brick", drones)
+        )
+        target = find_closest(self.pos, idle_drones)
+
+        if target is None:
+            return
+
+        if self.target is not target.pos:
+            self.path = None
+            self.target = target.pos
+
+        if self.path is None:
+            self.path = find_path(self.pos, self.target, self.maze, self.speed)
+
+        arrived = self.move_along_path()
+        if arrived:
+            print("arrived at drone")
+            target.get_brick(self.brick)
+            self.brick = None
+            self.state = "idle"
+            self.path = None
+
+    def idle(self):
+        self.state = "getting_brick"
+        self.path = None
+        
+        
     def move_along_path(self):
-        if self.path is None or len(self.path) < self.speed + 1:
-            last_pos = self.path[-1]
+        if len(self.path) == 1:
+            last_pos = self.path[0]
             target = Point(last_pos[0], last_pos[1])
             
             self.pos = Point(target.x, target.y)
             return True
 
         # remove first speed elements
-        pos = self.path[self.speed]
+        pos = self.path[0]
         target = Point(pos[0], pos[1])
-        self.path = self.path[self.speed :]
+        self.path = self.path[1:]
 
         self.pos = move_directly(self.pos, target, self.speed)
         return False

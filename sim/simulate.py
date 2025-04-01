@@ -108,7 +108,7 @@ def step():
     draw()
 
     for rover in rovers:
-        rover.make_move(gluers)
+        rover.make_move(gluers, drones)
 
     for drone in drones:
         drone.make_move(state.loose_bricks, house)

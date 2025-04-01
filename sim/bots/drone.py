@@ -24,7 +24,7 @@ class Drone:
         self.battery = 100
         self.id = uuid.uuid4()
 
-        self.state = "pick_wall_target"
+        self.state = "move_to_pickup"
         self.brick = None
         self.target = None
         self.wall_target = None
@@ -45,20 +45,19 @@ class Drone:
     def make_move(self, loose_bricks, house):
         self.battery -= 1
 
-        if self.state == "pick_wall_target":
-            self.pick_wall_target(house)
-        elif self.state == "move_to_pickup":
-            self.move_to_pickup()
-        elif self.state == "claim_brick":
-            self.claim_brick(loose_bricks)
-        elif self.state == "getting_brick":
-            self.get_brick(loose_bricks)
-        elif self.state == "placing_brick":
-            self.place_brick()
+        # print("DRONE", self.state)
 
-    def move_to_pickup(self):
-        if self.wall_target is None:
+
+        if self.state == "move_to_pickup":
+            self.move_to_pickup(house)
+        elif self.state == "waiting_for_brick":
             return
+        elif self.state == "placing_brick":
+            self.place_brick(house)
+
+    def move_to_pickup(self, house):
+        if self.wall_target is None:
+            self.pick_wall_target(house)
 
         # move to outside of wall
         target = self.wall_target
@@ -76,63 +75,23 @@ class Drone:
             return
 
         # pick up complete
-        self.state = "claim_brick"
-        self.wall_target = None
+        self.state = "waiting_for_brick"
 
-    def claim_brick(self, loose_bricks):
-        possible_bricks = []
-        for brick in loose_bricks:
-            if brick.drone_claimed_by is None:
-                if self.wall_target is not None:
-                    if brick.pos.distance(self.wall_target) < brick_size * 3:
-                        possible_bricks.append(brick)
-
-        if len(possible_bricks) == 0:
-            return
-
-        # find closest brick
-        best_brick = possible_bricks[0]
-        for brick in possible_bricks:
-            if self.pos.distance(brick.pos) < self.pos.distance(best_brick.pos):
-                best_brick = brick
-
-        self.target = best_brick.pos
-        best_brick.claimed_by = self.id
-
-        # claim complete
-        self.state = "get_brick"
-
-    def get_brick(self, loose_bricks):
-        if self.target is None:
-            self.target = self.wall_target
-            self.target.x += 10
-            self.target.y += 10
-
-        if self.pos.distance(self.target) > self.speed:
-            self.pos.move_towards(self.speed, self.target)
-            return
-
-        # find index of target in loose_bricks
-        for i in range(len(loose_bricks)):
-            if loose_bricks[i].pos == self.target:
-                self.brick = loose_bricks[i]
-                loose_bricks.pop(i)
-                break
-
-        # picking up complete
+    def get_brick(self, brick):
         self.state = "placing_brick"
+        self.brick = brick
 
-    def place_brick(self):
+    def place_brick(self, house):
         if self.wall_target is None:
             return
         self.target = self.wall_target
 
-        if self.pos.distance(self.wall_target) > self.speed:
-            self.pos.move_towards(self.speed, self.target)
+        if self.pos.distance(self.target) > self.speed:
+            self.pos = move_directly(self.pos, self.target, self.speed)
             return
 
         # place brick complete
-        self.global_state.house.place_brick(self.wall_target)
+        house.place_brick(self.wall_target)
         self.brick = None
         self.wall_target = None
         self.state = "pick_wall_target"
@@ -148,7 +107,6 @@ class Drone:
 
         self.wall_target = closest.pos
         closest.drone_claimed_by = self.id
-        self.state = "move_to_pickup"
 
 
 
