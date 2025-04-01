@@ -1,6 +1,6 @@
 brick_size = [50, 25]
-rover_count = 1
-drone_count = 1
-gluer_count = 1
+rover_count = 6
+drone_count = 2
+gluer_count = 3
 map_size = [1000, 1000]
 

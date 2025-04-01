@@ -10,7 +10,7 @@ from bots.rover import Rover
 from bots.drone import Drone
 from shapely.geometry import Polygon, Point
 import numpy as np
-
+import concurrent.futures
 
 
 pygame.init()
@@ -34,16 +34,6 @@ pile = Brick(
     screen,
 )
 
-
-def load_data():
-    with open("bricks.json") as f:
-        d = json.load(f)
-        for brick in d:
-            house.bricks.append(
-                Brick(brick["x"], brick["y"], brick["layer"], brick["rotation"])
-            )
-
-
 def init_robots():
     i = 0
     while i < gluer_count:
@@ -61,18 +51,18 @@ def init_robots():
         i += 1
         gluers.append(Gluer(x, y, screen, sim_speed))
 
-    while i < drone_count:
-        minx, miny, maxx, maxy = polygon.bounds
-        while len(drones) < number:
-            pnt = Point(np.random.uniform(minx, maxx), np.random.uniform(miny, maxy))
-            if polygon.contains(pnt):
-                drones.append(Drone(pnt.x, pnt.y, state))
-        return drones
+    minx, miny, maxx, maxy = house.polygon.bounds
+    while len(drones) < drone_count:
+        pnt = Point(np.random.uniform(minx, maxx), np.random.uniform(miny, maxy))
+        if house.polygon.contains(pnt):
+            drones.append(Drone(pnt.x, pnt.y, state))
 
     for i in range(rover_count):
-        x = random.randint(0, 100)
+        x = random.randint(0, 1000)
         y = random.randint(0, 100)
-        rovers.append(Rover(x, y, state))
+        rover = Rover(x, y, state)
+        rovers.append(rover)
+
 
 def draw():
     screen.fill((255, 255, 255))
@@ -95,10 +85,13 @@ def draw():
     pygame.display.flip()
     clock.tick(10)
 
+def make_rover_move():
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        executor.map(lambda rover: rover.make_move(gluers, drones), rovers)
+
 
 def step():
-    for rover in rovers:
-        rover.make_move(gluers, drones)
+    make_rover_move()
 
     for drone in drones:
         drone.make_move(state.loose_bricks, house)
@@ -113,6 +106,7 @@ if __name__ == "__main__":
     state = State(gluers, brick_pile, house, screen, sim_speed)
 
     init_robots()
+    draw()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -120,9 +114,6 @@ if __name__ == "__main__":
 
         for i in range(100):
             step()
-            if len(state.canidate_bricks) == 0:
-                if len(house.get_rover_bricks()) == 0:
-                    pass
 
             pygame.display.flip()
             clock.tick(120)

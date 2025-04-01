@@ -4,6 +4,7 @@ from paths import draw_lineString, find_path, move_directly, find_closest
 import pygame  # type: ignore
 from shapely.geometry import Polygon, Point, LineString
 
+
 size = [10, 10]
 
 # ~~~ STATES ~~~
@@ -48,7 +49,7 @@ class Rover:
             return
 
         line = LineString(self.path)
-        draw_lineString(line, self.screen)
+        # draw_lineString(line, self.screen)
 
     def __repr__(self):
         return f"Rover - ({self.pos.x}, {self.pos.y})"
@@ -158,17 +159,9 @@ class Rover:
         
         
     def move_along_path(self):
-        if len(self.path) == 1:
-            last_pos = self.path[0]
-            target = Point(last_pos[0], last_pos[1])
-            
-            self.pos = Point(target.x, target.y)
+        temp = self.path.pop(0)
+        self.pos = Point(temp[0], temp[1])
+        if len(self.path) == 0:
             return True
 
-        # remove first speed elements
-        pos = self.path[0]
-        target = Point(pos[0], pos[1])
-        self.path = self.path[1:]
-
-        self.pos = move_directly(self.pos, target, self.speed)
         return False

@@ -24,7 +24,7 @@ class Brick:
             location = (self.pos.x, self.pos.y, brick_size[0], brick_size[1])
         else:
             location = (self.pos.x, self.pos.y, brick_size[1], brick_size[0]) 
-        
+
         pygame.draw.rect(
             self.screen,
             outline,

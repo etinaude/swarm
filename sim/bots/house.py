@@ -1,16 +1,17 @@
 from brick import Brick
 from specs import brick_size, map_size
 from shapely.geometry import Polygon, Point
-from paths import draw_point
+from paths import draw_point, draw_lineString
+
 
 house_size = [400, 225, 1]
 top_left = Point(100, 200)
 bottom_right = Point(
-    top_left.x + house_size[0],
+    top_left.x + house_size[0] + brick_size[1],
     top_left.y + house_size[1],
 )
 top_right = Point(
-    top_left.x + house_size[0],
+    top_left.x + house_size[0] + brick_size[1],
     top_left.y,
 )
 bottom_left = Point(
@@ -27,8 +28,6 @@ class House:
         self.make_structure()
         
         self.maze = []
-        self.make_maze()
-
         self.polygon = Polygon(
             [
                 top_left,
@@ -37,6 +36,8 @@ class House:
                 bottom_left,
             ]
         )
+
+        self.make_maze()
 
     def make_structure(self):
         for layer in range(house_size[2]):
@@ -69,7 +70,6 @@ class House:
             if brick.placed:
                 brick.draw()
         self.draw_goal()
-        self.draw_maze()
 
     def draw_goal(self):
         for brick in self.bricks:
@@ -134,19 +134,22 @@ class House:
         self.maze = []
         empty_row = [0] * (map_size[0])
         house_row = []
-        padding = 10
 
-        for x in range(map_size[0]):
-            if x < top_left.x or x > (top_left.x + house_size[0] + brick_size[0]):
+        bounds = self.polygon.buffer(20).boundary
+
+        for y in range(map_size[1]):
+            if y < bounds.bounds[1] or y > bounds.bounds[3]:
                 house_row.append(0)
             else:
                 house_row.append(1)
 
-        for y in range(map_size[1]):
-            if y < top_left.y or y > (top_left.y + house_size[1] + brick_size[1]):
+        for x in range(map_size[0]):
+            if x < bounds.bounds[0] or x > bounds.bounds[2]:
                 self.maze.append(empty_row)
             else:
                 self.maze.append(house_row)
+
+
 
 
     def draw_maze(self):

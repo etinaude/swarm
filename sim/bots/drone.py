@@ -45,9 +45,6 @@ class Drone:
     def make_move(self, loose_bricks, house):
         self.battery -= 1
 
-        # print("DRONE", self.state)
-
-
         if self.state == "move_to_pickup":
             self.move_to_pickup(house)
         elif self.state == "waiting_for_brick":

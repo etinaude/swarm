@@ -1,9 +1,11 @@
 import pygame  # type: ignore
 from shapely.geometry import Polygon, Point
+import heapq
+import time
 
-class Node:
-    """A node class for A* Pathfinding"""
-
+class Node():
+    """A node class for Anytime A* Pathfinding"""
+    
     def __init__(self, parent=None, position=None):
         self.parent = parent
         self.position = position
@@ -11,101 +13,83 @@ class Node:
         self.g = 0
         self.h = 0
         self.f = 0
-
+    
     def __eq__(self, other):
         return self.position == other.position
+    
+    def __lt__(self, other):
+        return self.f < other.f
 
-
-def a_star(start_pos, target, maze, speed=1):
+def anytime_a_star(start_pos, target, maze, speed=1, time_limit=0.1):
+    start_time = time.time()
+    
     start = (int(start_pos.x), int(start_pos.y))
     end = (int(target.x), int(target.y))
     start_node = Node(None, start)
     start_node.g = start_node.h = start_node.f = 0
     end_node = Node(None, end)
     end_node.g = end_node.h = end_node.f = 0
+    
     open_list = []
-    closed_list = []
-    open_list.append(start_node)
-
-    while len(open_list) > 0:
-        current_node = open_list[0]
-        current_index = 0
-        for index, item in enumerate(open_list):
-            if item.f < current_node.f:
-                current_node = item
-                current_index = index
-
-        # Pop current off open list, add to closed list
-        open_list.pop(current_index)
-        closed_list.append(current_node)
-
-        # Found the goal
-        distance = ((current_node.position[0] - end_node.position[0]) ** 2 + (
-            current_node.position[1] - end_node.position[1]
-        ) ** 2) ** 0.5
-
+    closed_list = set()
+    
+    heapq.heappush(open_list, start_node)
+    
+    best_path = None
+    best_cost = float('inf')
+    
+    while open_list and (time.time() - start_time) < time_limit:
+        
+        current_node = heapq.heappop(open_list)
+        closed_list.add(current_node.position)
+        
+        distance = ((current_node.position[0] - end_node.position[0]) ** 2 +
+                    (current_node.position[1] - end_node.position[1]) ** 2) ** 0.5
+        
         if distance < speed:
             path = []
             current = current_node
             while current is not None:
                 path.append(current.position)
                 current = current.parent
-            return path[::-1]  # Return reversed path
-
-        # Generate children
-        children = []
+            path.reverse()
+            
+            cost = current_node.f
+            if cost < best_cost:
+                best_cost = cost
+                best_path = path
+        
         for new_position in [
-            (0, -speed),
-            (0, speed),
-            (-speed, 0),
-            (speed, 0),
-            (-speed, -speed),
-            (-speed, speed),
-            (speed, -speed),
-            (speed, speed),
-        ]:  # Adjacent squares
+            (0, -speed), (0, speed), (-speed, 0), (speed, 0),
+            (-speed, -speed), (-speed, speed), (speed, -speed), (speed, speed)
+        ]:
             node_position = (
                 current_node.position[0] + new_position[0],
                 current_node.position[1] + new_position[1],
             )
             if (
-                node_position[0] > (len(maze) - 1)
-                or node_position[0] < 0
-                or node_position[1] > (len(maze[len(maze) - 1]) - 1)
-                or node_position[1] < 0
+                node_position[0] < 0 or node_position[0] >= len(maze) or
+                node_position[1] < 0 or node_position[1] >= len(maze[0])
             ):
                 continue
             if maze[node_position[0]][node_position[1]] != 0:
-                print("WALL")
-                print(len(open_list))
-                display_node(node_position, state.screen)
                 continue
+            if node_position in closed_list:
+                continue
+            
             new_node = Node(current_node, node_position)
-            children.append(new_node)
-
-        # Loop through children
-        for child in children:
-            for closed_child in closed_list:
-                if child == closed_child:
-                    continue
-            child.g = current_node.g + 1
-            child.h = ((child.position[0] - end_node.position[0]) ** 2) + (
-                (child.position[1] - end_node.position[1]) ** 2
-            )
-            child.f = child.g + child.h
-            for open_node in open_list:
-                if child == open_node and child.g > open_node.g:
-                    continue
-            open_list.append(child)
-
-    print("Open list length: ", len(open_list))
-    print("Closed list length: ", len(closed_list))
-    print("CANT FIND PATH")
-    return []
+            new_node.g = current_node.g + 1
+            new_node.h = ((new_node.position[0] - end_node.position[0]) ** 2) + \
+                         ((new_node.position[1] - end_node.position[1]) ** 2)
+            new_node.f = new_node.g + new_node.h
+            
+            heapq.heappush(open_list, new_node)
+    
+    return best_path if best_path else []
 
 
 def find_path(start, target, maze, speed=1):
-    a_star_path = a_star(start, target, maze, speed)
+    a_star_path = anytime_a_star(start, target, maze, speed)
 
     if a_star_path is None or len(a_star_path) == 0:
         print("No path found")
