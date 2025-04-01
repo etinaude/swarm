@@ -1,6 +1,6 @@
 import json
 import random
-from bots.global_state import State
+from global_state import State
 import pygame  # type: ignore
 from specs import rover_count, gluer_count, drone_count, map_size
 from brick import Brick
@@ -108,10 +108,10 @@ def step():
     draw()
 
     for rover in rovers:
-        rover.make_move()
+        rover.make_move(gluers)
 
     for drone in drones:
-        drone.make_move()
+        drone.make_move(state.loose_bricks, house)
 
     for gluer in gluers:
         gluer.update()

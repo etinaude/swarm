@@ -18,7 +18,7 @@ class Gluer:
         self.screen = screen
 
         self.glue_time = (3 * 1000) / sim_speed
-        self.status = "idle"
+        self.state = "idle"
         self.glue_left = 100
         self.brick = None
 
@@ -32,15 +32,15 @@ class Gluer:
         pygame.draw.rect(self.screen, color, location)
 
     def glue(self, brick):
-        if self.status != "idle":
+        if self.state != "idle":
             return
 
-        self.status = "working"
+        self.state = "working"
         self.time_stamp = pygame.time.get_ticks()
         self.brick = brick
 
     def update(self):
-        if self.status != "working":
+        if self.state != "working":
             return
 
         if pygame.time.get_ticks() - self.time_stamp < self.glue_time:
@@ -50,14 +50,14 @@ class Gluer:
         self.brick.has_adhesive = True
 
         if self.glue_left == 0:
-            self.status = "out_of_glue"
+            self.state = "out_of_glue"
         else:
-            self.status = "ready"
+            self.state = "ready"
 
     def give_brick(self):
         brick = self.brick
         self.brick = None
-        self.status = "idle"
+        self.state = "idle"
 
         return brick
 

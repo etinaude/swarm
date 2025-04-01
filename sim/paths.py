@@ -16,11 +16,9 @@ class Node:
         return self.position == other.position
 
 
-def a_star(start_pos, target, state, ignore_walls=False):
+def a_star(start_pos, target, maze, ignore_walls=False):
     start = (int(start_pos.x), int(start_pos.y))
     end = (int(target.x), int(target.y))
-
-    maze = state.house.maze
     start_node = Node(None, start)
     start_node.g = start_node.h = start_node.f = 0
     end_node = Node(None, end)
@@ -104,8 +102,8 @@ def a_star(start_pos, target, state, ignore_walls=False):
     return []
 
 
-def find_path(start, target, state=None, ignore_walls=False):
-    a_star_path = a_star(start, target, state, ignore_walls)
+def find_path(start, target, maze, ignore_walls=False):
+    a_star_path = a_star(start, target, maze, ignore_walls)
 
     if a_star_path is None or len(a_star_path) == 0:
         print("No path found")
