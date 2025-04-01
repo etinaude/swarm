@@ -49,10 +49,14 @@ def init_robots():
         x = random.randint(200, map_size[0] - 200)
         y = random.randint(0, 100)
 
-        pos = Position(x, y)
+        pos = Point(x, y)
+        found = False
         for gluer in gluers:
-            if gluer.pos.get_dist(pos) < 100:
-                continue
+            if gluer.pos.distance(pos) < 50:
+                found = True
+                break
+        if found:
+            continue
         i += 1
         gluers.append(Gluer(x, y, screen, sim_speed))
 
@@ -61,10 +65,14 @@ def init_robots():
         x = random.randint(top_left[0], house_size[0] + top_left[0])
         y = random.randint(top_left[1], house_size[1] + top_left[1])
 
-        pos = Position(x, y)
+        pos = Point(x, y)
+        found = False
         for drone in drones:
-            if drone.pos.get_dist(pos) < 100:
-                continue
+            if drone.pos.distance(pos) < 50:
+                found = True
+                break
+        if found:
+            continue
         i += 1
         drones.append(Drone(x, y, state))
 

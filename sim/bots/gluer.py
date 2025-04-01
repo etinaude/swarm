@@ -1,5 +1,8 @@
 from position import Position
 import pygame  # type: ignore
+from shapely.geometry import Polygon, Point
+import copy
+
 
 size = [20, 20]
 
@@ -13,7 +16,7 @@ size = [20, 20]
 
 class Gluer:
     def __init__(self, x, y, screen, sim_speed=1):
-        self.pos = Position(x, y)
+        self.pos = Point(x, y)
         self.screen = screen
 
         self.glue_time = (3 * 1000) / sim_speed
@@ -24,7 +27,7 @@ class Gluer:
     def draw(self):
         color = (120, 20, 120)
         if self.brick is not None:
-            self.brick.pos = self.pos.copy_pos()
+            self.brick.pos = Point(self.pos.x, self.pos.y)
             self.brick.draw()
 
         location = (self.pos.x, self.pos.y, size[0], size[1])
@@ -54,7 +57,7 @@ class Gluer:
             self.status = "ready"
 
     def give_brick(self):
-        brick = self.brick
+        brick = copy.deepcopy(self.brick)
         self.brick = None
         self.status = "idle"
 
