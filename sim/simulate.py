@@ -4,11 +4,13 @@ from global_state import State
 import pygame  # type: ignore
 from specs import rover_count, gluer_count, drone_count, map_size
 from brick import Brick
-from bots.house import House, top_left, house_size
+from bots.house import House
 from bots.gluer import Gluer
 from bots.rover import Rover
 from bots.drone import Drone
 from shapely.geometry import Polygon, Point
+import numpy as np
+
 
 
 pygame.init()
@@ -59,33 +61,23 @@ def init_robots():
         i += 1
         gluers.append(Gluer(x, y, screen, sim_speed))
 
-    i = 0
     while i < drone_count:
-        x = random.randint(top_left[0], house_size[0] + top_left[0])
-        y = random.randint(top_left[1], house_size[1] + top_left[1])
-
-        pos = Point(x, y)
-        found = False
-        for drone in drones:
-            if drone.pos.distance(pos) < 50:
-                found = True
-                break
-        if found:
-            continue
-        i += 1
-        drones.append(Drone(x, y, state))
+        minx, miny, maxx, maxy = polygon.bounds
+        while len(drones) < number:
+            pnt = Point(np.random.uniform(minx, maxx), np.random.uniform(miny, maxy))
+            if polygon.contains(pnt):
+                drones.append(Drone(pnt.x, pnt.y, state))
+        return drones
 
     for i in range(rover_count):
-        x = random.randint(0, top_left[0])
-        y = random.randint(0, top_left[1])
+        x = random.randint(0, 100)
+        y = random.randint(0, 100)
         rovers.append(Rover(x, y, state))
-
 
 def draw():
     screen.fill((255, 255, 255))
     house.draw_goal()
     house.draw()
-
     pile.draw()
 
     for brick in state.loose_bricks:
@@ -105,8 +97,6 @@ def draw():
 
 
 def step():
-    draw()
-
     for rover in rovers:
         rover.make_move(gluers, drones)
 
@@ -115,6 +105,8 @@ def step():
 
     for gluer in gluers:
         gluer.update()
+
+    draw()
 
 
 if __name__ == "__main__":

@@ -44,7 +44,7 @@ def a_star(start_pos, target, maze, speed=1):
             current_node.position[1] - end_node.position[1]
         ) ** 2) ** 0.5
 
-        if distance <= speed:
+        if distance < speed:
             path = []
             current = current_node
             while current is not None:
@@ -133,8 +133,8 @@ def move_directly(selfPos, target, speed):
         y = (selfPos.y + direction[1] * speed)
         return Point(x, y)
 
-def draw_point(x, y, screen):
-    pygame.draw.circle(screen, (255, 0, 0), (x, y), 5)
+def draw_point(x, y, screen, color=(0, 0, 0)):
+    pygame.draw.circle(screen, color, (x, y), 5)
 
 
 def draw_lineString(line, screen):
