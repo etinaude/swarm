@@ -8,15 +8,20 @@ class House:
         self.screen = screen
         self.make_structure()
         self.top_left = top_left
-        self.bottom_right = [top_left[0] + house_size[0], top_left[1] + house_size[1]]
         self.maze = []
         self.make_maze()
+
+        top = top_left[0]
+        bottom = top_left[0] + house_size[0] + brick_size[0]
+        left = top_left[1]
+        right = top_left[1] + house_size[1] + brick_size[1]
+
         self.polygon = Polygon(
             [
-                (top_left[0], top_left[1]),
-                (top_left[0] + house_size[0], top_left[1]),
-                (top_left[0] + house_size[0], top_left[1] + house_size[1]),
-                (top_left[0], top_left[1] + house_size[1]),
+                (top, left),
+                (top, right),
+                (bottom, right),
+                (bottom, left),
             ]
         )
 

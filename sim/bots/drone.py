@@ -3,9 +3,10 @@ from position import Position
 import pygame  # type: ignore
 from specs import brick_size
 from shapely.geometry import Polygon, Point
+from shapely.ops import nearest_points
+from paths import move_directly, draw_path, draw_lineString
 
 size = [10, 10]
-
 
 class Drone:
     def __init__(self, x, y, global_state):
@@ -42,7 +43,7 @@ class Drone:
         if self.state == "pick_wall_target":
             self.pick_wall_target()
         elif self.state == "move_to_pickup":
-            self.pick_wall_target()
+            self.move_to_pickup()
         elif self.state == "claim_brick":
             self.get_brick()
         elif self.state == "getting_brick":
@@ -53,15 +54,23 @@ class Drone:
     def move_to_pickup(self):
         if self.wall_target is None:
             return
+
         # move to outside of wall
-        target = self.wall_target.copy_pos()
+        target = self.wall_target
+        house = self.global_state.house.polygon
+        bounds = house.buffer(30).boundary
 
-        bound = self.global_state.house.polygon.exterior
+        draw_lineString(bounds, self.global_state.screen)
 
-        
+        points = nearest_points(
+            self.pos, bounds
+        )
+        self.target = points[1]
+
+        dist = self.pos.distance(self.target)
 
         if self.pos.distance(self.target) > self.speed:
-            self.pos.move_towards(self.speed, self.target)
+            self.pos = move_directly(self.pos, self.target, self.speed)
             return
 
         # pick up complete
@@ -93,7 +102,7 @@ class Drone:
 
     def get_brick(self):
         if self.target is None:
-            self.target = self.wall_target.copy_pos()
+            self.target = self.wall_target
             self.target.x += 10
             self.target.y += 10
 
@@ -109,7 +118,7 @@ class Drone:
                 self.global_state.loose_bricks.pop(i)
                 break
 
-        # pciking up complete
+        # picking up complete
         self.state = "placing_brick"
 
     def place_brick(self):

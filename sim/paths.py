@@ -1,6 +1,6 @@
 from position import Position
 import pygame  # type: ignore
-
+from shapely.geometry import Polygon, Point
 
 class Node:
     """A node class for A* Pathfinding"""
@@ -122,18 +122,25 @@ def find_path(start, target, state=None, ignore_walls=False):
 
     return a_star_path
 
+def get_direction(pointFrom, pointTo):
+    x_diff = pointTo.x - pointFrom.x
+    y_diff = pointTo.y - pointFrom.y
+    distance = (x_diff**2 + y_diff**2) ** 0.5
+    if distance == 0:
+        return (0, 0)
+    x = x_diff / distance
+    y = y_diff / distance
+    return (x, y)
 
-def move_directly(self, speed, target):
-    direction = self.get_direction(target)
-    distance = self.get_dist(target)
+def move_directly(selfPos, target, speed):
+    distance = selfPos.distance(target)
     if distance < speed:
-        self = target.copy_pos()
-        return True
+        return target.copy_pos()
     else:
-        self.x += direction[0] * speed
-        self.y += direction[1] * speed
-        return False
-
+        direction = get_direction(selfPos, target)
+        x = (selfPos.x + direction[0] * speed)
+        y = (selfPos.y + direction[1] * speed)
+        return Point(x, y)
 
 def draw_point(x, y, screen):
     pygame.draw.circle(screen, (255, 0, 0), (x, y), 5)
@@ -149,3 +156,8 @@ def display_node(node, screen):
     pygame.draw.circle(screen, (0, 255, 0), (x, y), 2)
     pygame.display.flip()
     pygame.time.delay(100)
+
+
+def draw_path(path, screen):
+    for node in path:
+        display_node(node, screen)
