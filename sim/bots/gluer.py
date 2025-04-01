@@ -1,7 +1,5 @@
-from position import Position
 import pygame  # type: ignore
 from shapely.geometry import Polygon, Point
-import copy
 
 
 size = [20, 20]
@@ -57,7 +55,7 @@ class Gluer:
             self.status = "ready"
 
     def give_brick(self):
-        brick = copy.deepcopy(self.brick)
+        brick = self.brick
         self.brick = None
         self.status = "idle"
 

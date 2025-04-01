@@ -1,10 +1,9 @@
 import uuid
-from position import Position
 import pygame  # type: ignore
 from specs import brick_size
 from shapely.geometry import Polygon, Point
 from shapely.ops import nearest_points
-from paths import move_directly, draw_path, draw_lineString
+from paths import move_directly, draw_path, draw_lineString, find_closest
 
 size = [10, 10]
 
@@ -32,7 +31,7 @@ class Drone:
     def draw(self):
         color = (120, 120, 20)
         if self.brick is not None:
-            self.brick.pos = self.pos.copy_pos()
+            self.brick.pos = Point(self.pos.x, self.pos.y)
 
             self.brick.draw()
 
@@ -44,8 +43,6 @@ class Drone:
 
     def make_move(self):
         self.battery -= 1
-
-        print(self.state)
 
         if self.state == "pick_wall_target":
             self.pick_wall_target()
@@ -66,8 +63,6 @@ class Drone:
         target = self.wall_target
         house = self.global_state.house.polygon
         bounds = house.buffer(30).boundary
-
-        draw_lineString(bounds, self.global_state.screen)
 
         points = nearest_points(
             self.pos, bounds

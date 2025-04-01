@@ -52,9 +52,9 @@ class Brick:
         if self.has_adhesive:
             glue_dot_size = 5
             adhesive_color = (255, 255, 255)
-            pos = self.pos.coords
-            x = pos[0] + pos[2] / 2
-            y = pos[1] + pos[3] / 2
+
+            x = self.pos.x + brick_size[0] / 2
+            y = self.pos.y + brick_size[1] / 2
             pygame.draw.circle(self.screen, adhesive_color, (x, y), glue_dot_size)
 
     def __repr__(self):

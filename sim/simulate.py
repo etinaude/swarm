@@ -1,7 +1,6 @@
 import json
 import random
 from bots.global_state import State
-from position import Position
 import pygame  # type: ignore
 from specs import rover_count, gluer_count, drone_count, map_size
 from brick import Brick

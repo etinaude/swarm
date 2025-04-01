@@ -1,4 +1,3 @@
-from position import Position
 import pygame  # type: ignore
 from shapely.geometry import Polygon, Point
 
@@ -17,9 +16,9 @@ class Node:
         return self.position == other.position
 
 
-def a_star(start_pos, end, state, ignore_walls=False):
-    start = (start_pos.x, start_pos.y)
-    end = (target.x, target.y)
+def a_star(start_pos, target, state, ignore_walls=False):
+    start = (int(start_pos.x), int(start_pos.y))
+    end = (int(target.x), int(target.y))
 
     maze = state.house.maze
     start_node = Node(None, start)
@@ -53,7 +52,7 @@ def a_star(start_pos, end, state, ignore_walls=False):
 
         # Generate children
         children = []
-        speed = 5
+        speed = 1
         for new_position in [
             (0, -speed),
             (0, speed),
@@ -106,12 +105,6 @@ def a_star(start_pos, end, state, ignore_walls=False):
 
 
 def find_path(start, target, state=None, ignore_walls=False):
-    if not isinstance(target, Position):
-        target = target.pos
-
-    if not isinstance(start, Position):
-        start = start
-
     a_star_path = a_star(start, target, state, ignore_walls)
 
     if a_star_path is None or len(a_star_path) == 0:
@@ -135,7 +128,7 @@ def get_direction(pointFrom, pointTo):
 def move_directly(selfPos, target, speed):
     distance = selfPos.distance(target)
     if distance < speed:
-        return target.copy_pos()
+        return Point(target.x, target.y)
     else:
         direction = get_direction(selfPos, target)
         x = (selfPos.x + direction[0] * speed)
@@ -161,3 +154,23 @@ def display_node(node, screen):
 def draw_path(path, screen):
     for node in path:
         display_node(node, screen)
+
+def find_closest(pos, others):
+        if not others:
+            return None
+
+        closest = others[0]
+        if isinstance(closest, Point):
+            closest_dist = pos.distance(closest) 
+        else:
+            closest_dist = pos.distance(closest.pos)
+        
+        for other in others:
+            if isinstance(other, Point):
+                other_pos = other
+            else:
+                other_pos = other.pos
+            if pos.distance(other_pos) < closest_dist:
+                closest = other
+                closest_dist = pos.distance(other_pos)
+        return closest
