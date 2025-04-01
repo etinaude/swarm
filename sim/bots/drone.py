@@ -94,7 +94,7 @@ class Drone:
         house.place_brick(self.wall_target)
         self.brick = None
         self.wall_target = None
-        self.state = "pick_wall_target"
+        self.state = "move_to_pickup"
 
     def pick_wall_target(self, house):
         canidates = house.get_drone_bricks()
