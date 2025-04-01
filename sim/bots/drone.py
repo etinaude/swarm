@@ -8,6 +8,13 @@ from paths import move_directly, draw_path, draw_lineString
 
 size = [10, 10]
 
+# pick wall target
+# move to pick up
+# (wait until brick) claim brick
+# pick up
+# place brick
+# repeat
+
 class Drone:
     def __init__(self, x, y, global_state):
         self.pos = Point(x, y)
@@ -45,7 +52,7 @@ class Drone:
         elif self.state == "move_to_pickup":
             self.move_to_pickup()
         elif self.state == "claim_brick":
-            self.get_brick()
+            self.claim_brick()
         elif self.state == "getting_brick":
             self.get_brick()
         elif self.state == "placing_brick":
@@ -77,7 +84,9 @@ class Drone:
         self.state = "claim_brick"
         self.wall_target = None
 
-    def claim_brick(self, brick_list):
+    def claim_brick(self):
+        brick_list = self.global_state.loose_bricks
+
         possible_bricks = []
         for brick in brick_list:
             if brick.drone_claimed_by is None:
@@ -150,9 +159,4 @@ class Drone:
         self.state = "move_to_pickup"
 
 
-# pick wall target
-# move to pick up
-# (wait until brick) claim brick
-# pick up
-# place brick
-# repeat
+
