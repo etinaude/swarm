@@ -1,33 +1,21 @@
 from specs import brick_size
+from shapely.geometry import Polygon, Point
 
 
 class Position:
     def __init__(self, x, y, layer=0, rotation=0):
-        self.x = x
-        self.y = y
+        self.point = Point(x, y)
         self.layer = layer
         self.rotation = rotation
 
     def get_location(self):
-        location = (self.x, self.y, brick_size[0], brick_size[1])
+        location = (self.point.x, self.point.y, brick_size[0], brick_size[1])
         if self.rotation == 90:
-            location = (self.x, self.y, brick_size[1], brick_size[0])
+            location = (self.point.x, self.point.y, brick_size[1], brick_size[0])
         return location
 
     def __repr__(self):
-        return f"({round(self.x, 2)}, {round(self.y, 2)}, {round(self.layer, 2)}, {round(self.rotation, 2)})"
-
-    def __eq__(self, other):
-        if other is None:
-            return False
-        if not isinstance(other, Position):
-            other = other.pos
-        return (
-            self.x == other.x
-            and self.y == other.y
-            and self.layer == other.layer
-            and self.rotation == other.rotation
-        )
+        return f"({round(self.point.x, 2)}, {round(self.point.y, 2)}, {round(self.layer, 2)}, {round(self.rotation, 2)})"
 
     def get_dist(self, other):
 

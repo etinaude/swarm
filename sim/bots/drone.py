@@ -2,13 +2,14 @@ import uuid
 from position import Position
 import pygame  # type: ignore
 from specs import brick_size
+from shapely.geometry import Polygon, Point
 
 size = [10, 10]
 
 
 class Drone:
     def __init__(self, x, y, global_state):
-        self.pos = Position(x, y)
+        self.pos = Point(x, y)
 
         self.global_state = global_state
         self.speed = 2 * global_state.sim_speed
@@ -55,18 +56,11 @@ class Drone:
         # move to outside of wall
         target = self.wall_target.copy_pos()
 
-        if target.x == self.global_state.house.top_left[0]:
-            target.x -= 10
-        if target.x == self.global_state.house.bottom_right[0]:
-            target.x += 10
+        bound = self.global_state.house.polygon.exterior
 
-        if target.y == self.global_state.house.top_left[1]:
-            target.y -= 10
-        if target.y == self.global_state.house.bottom_right[1]:
-            target.y += 10
-        self.target = target
+        
 
-        if self.pos.get_dist(self.target) > self.speed:
+        if self.pos.distance(self.target) > self.speed:
             self.pos.move_towards(self.speed, self.target)
             return
 
@@ -79,7 +73,7 @@ class Drone:
         for brick in brick_list:
             if brick.drone_claimed_by is None:
                 if self.wall_target is not None:
-                    if brick.pos.get_dist(self.wall_target) < brick_size * 3:
+                    if brick.pos.distance(self.wall_target) < brick_size * 3:
                         possible_bricks.append(brick)
 
         if len(possible_bricks) == 0:
@@ -88,7 +82,7 @@ class Drone:
         # find closest brick
         best_brick = possible_bricks[0]
         for brick in possible_bricks:
-            if self.pos.get_dist(brick.pos) < self.pos.get_dist(best_brick.pos):
+            if self.pos.distance(brick.pos) < self.pos.distance(best_brick.pos):
                 best_brick = brick
 
         self.target = best_brick.pos
@@ -103,7 +97,7 @@ class Drone:
             self.target.x += 10
             self.target.y += 10
 
-        if self.pos.get_dist(self.target) > self.speed:
+        if self.pos.distance(self.target) > self.speed:
             self.pos.move_towards(self.speed, self.target)
             return
 
@@ -123,7 +117,7 @@ class Drone:
             return
         self.target = self.wall_target
 
-        if self.pos.get_dist(self.wall_target) > self.speed:
+        if self.pos.distance(self.wall_target) > self.speed:
             self.pos.move_towards(self.speed, self.target)
             return
 
@@ -139,7 +133,7 @@ class Drone:
             return
         closest = canidates[0]
         for brick in canidates:
-            if self.pos.get_dist(brick.pos) < self.pos.get_dist(closest.pos):
+            if self.pos.distance(brick.pos) < self.pos.distance(closest.pos):
                 closest = brick
 
         self.wall_target = closest.pos

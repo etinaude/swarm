@@ -17,7 +17,10 @@ class Node:
         return self.position == other.position
 
 
-def a_star(start, end, state):
+def a_star(start_pos, end, state, ignore_walls=False):
+    start = (start_pos.x, start_pos.y)
+    end = (target.x, target.y)
+
     maze = state.house.maze
     start_node = Node(None, start)
     start_node.g = start_node.h = start_node.f = 0
@@ -50,15 +53,16 @@ def a_star(start, end, state):
 
         # Generate children
         children = []
+        speed = 5
         for new_position in [
-            (0, -1),
-            (0, 1),
-            (-1, 0),
-            (1, 0),
-            (-1, -1),
-            (-1, 1),
-            (1, -1),
-            (1, 1),
+            (0, -speed),
+            (0, speed),
+            (-speed, 0),
+            (speed, 0),
+            (-speed, -speed),
+            (-speed, speed),
+            (speed, -speed),
+            (speed, speed),
         ]:  # Adjacent squares
             node_position = (
                 current_node.position[0] + new_position[0],
@@ -101,17 +105,14 @@ def a_star(start, end, state):
     return []
 
 
-def find_path(start, target, state=None):
+def find_path(start, target, state=None, ignore_walls=False):
     if not isinstance(target, Position):
         target = target.pos
 
     if not isinstance(start, Position):
         start = start
 
-    start_tuple = (start.x, start.y)
-    target_tuple = (target.x, target.y)
-
-    a_star_path = a_star(start_tuple, target_tuple, state)
+    a_star_path = a_star(start, target, state, ignore_walls)
 
     if a_star_path is None or len(a_star_path) == 0:
         print("No path found")

@@ -9,6 +9,7 @@ from bots.house import House, top_left, house_size
 from bots.gluer import Gluer
 from bots.rover import Rover
 from bots.drone import Drone
+from shapely.geometry import Polygon, Point
 
 
 pygame.init()
@@ -22,7 +23,7 @@ rovers = []
 gluers = []
 drones = []
 running = True
-brick_pile = Position(10, 10)
+brick_pile = Point(10, 10)
 
 pile = Brick(
     brick_pile.x,
@@ -123,7 +124,6 @@ if __name__ == "__main__":
             if len(state.canidate_bricks) == 0:
                 if len(house.get_rover_bricks()) == 0:
                     pass
-                    # print("Done")
 
             pygame.display.flip()
             clock.tick(120)

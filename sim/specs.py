@@ -1,9 +1,9 @@
-brick_size = [30, 15]
-rover_count = 1
+brick_size = [50, 25]
+rover_count = 0
 drone_count = 1
-gluer_count = 3
-map_size = [400, 400]
-house_size = [150, 105, 5]
+gluer_count = 0
+map_size = [1000, 1000]
+house_size = [400, 225, 1]
 top_left = [25, 100]
 bottom_right = [
     top_left[0] + house_size[0],

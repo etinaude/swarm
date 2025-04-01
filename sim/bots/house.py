@@ -1,6 +1,6 @@
 from brick import Brick
 from specs import brick_size, map_size, house_size, top_left
-
+from shapely.geometry import Polygon, Point
 
 class House:
     def __init__(self, screen):
@@ -11,6 +11,14 @@ class House:
         self.bottom_right = [top_left[0] + house_size[0], top_left[1] + house_size[1]]
         self.maze = []
         self.make_maze()
+        self.polygon = Polygon(
+            [
+                (top_left[0], top_left[1]),
+                (top_left[0] + house_size[0], top_left[1]),
+                (top_left[0] + house_size[0], top_left[1] + house_size[1]),
+                (top_left[0], top_left[1] + house_size[1]),
+            ]
+        )
 
     def make_structure(self):
         for layer in range(house_size[2]):
@@ -52,7 +60,7 @@ class House:
 
     def current_layer(self):
         not_placed = list(filter(lambda x: not (x.placed), self.bricks))
-        return min([brick.pos.layer for brick in not_placed] + [999])
+        return min([brick.layer for brick in not_placed] + [999])
 
     def get_rover_bricks(self):
         current_layer = self.current_layer()
@@ -62,7 +70,7 @@ class House:
                 filter(
                     lambda x: (
                         (not x.placed)
-                        and x.pos.layer == current_layer
+                        and x.layer == current_layer
                         and x.drone_claimed_by
                         and not (x.rover_claimed_by)
                     ),
@@ -80,7 +88,7 @@ class House:
                 filter(
                     lambda x: (
                         (not x.placed)
-                        and x.pos.layer == current_layer
+                        and x.layer == current_layer
                         and not (x.drone_claimed_by)
                     ),
                     self.bricks,
@@ -120,10 +128,3 @@ class House:
             else:
                 self.maze.append(house_row)
 
-    def draw_maze(self):
-        for y in range(len(self.maze)):
-            for x in range(len(self.maze[y])):
-                if self.maze[y][x] == 1:
-                    self.screen.set_at((x, y), (0, 0, 0))
-                else:
-                    self.screen.set_at((x, y), (255, 255, 255))
