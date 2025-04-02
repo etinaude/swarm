@@ -3,14 +3,14 @@
 class Motor
 {
 public:
-    int speed = 1000;
+    int speed = 500;
     bool enable = false;
     bool direction = false;
     int stepPin = 7;
     int dirPin = 5;
     int enPin = 9;
 
-    Motor(int stepPin, int dirPin, int enPin)
+    Motor(int enPin, int stepPin, int dirPin)
     {
         this->stepPin = stepPin;
         this->dirPin = dirPin;

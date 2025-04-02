@@ -9,8 +9,8 @@
 // s=speed <speed>
 // e=enable <enable>
 
-Motor liftMotor(7, 5, 9);
-Motor gripMotor(10, 11, 12);
+Motor gripMotor(39, 37, 35);
+Motor liftMotor(33, 18, 16);
 
 void setup()
 {
@@ -40,7 +40,7 @@ void readSerial()
       int dir = s.substring(2, 3).toInt();
       int steps = s.substring(3).toInt();
 
-      liftMotor.move(steps, dir);
+      gripMotor.move(steps, dir);
     }
 
     if (op == 's')

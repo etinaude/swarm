@@ -49,7 +49,7 @@ class Rover:
             return
 
         line = LineString(self.path)
-        # draw_lineString(line, self.screen)
+        draw_lineString(line, self.screen)
 
     def __repr__(self):
         return f"Rover - ({self.pos.x}, {self.pos.y})"
