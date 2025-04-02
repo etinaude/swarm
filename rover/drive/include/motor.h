@@ -14,10 +14,11 @@ public:
         this->dataPin = dataPin;
 
         pinMode(pinA, OUTPUT);
-        pinMode(pinA, OUTPUT);
+        pinMode(pinB, OUTPUT);
+        stop();
     }
 
-    void move(int speed = 50, bool direction = true)
+    void move(int speed, bool direction)
     {
         digitalWrite(pinA, direction);
         digitalWrite(pinB, !direction);

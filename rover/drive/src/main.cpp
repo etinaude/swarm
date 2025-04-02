@@ -2,9 +2,12 @@
 #include <motor.h>
 
 Motor rightA(1, 2, 39);
-Motor rightB(41, 42, 40);
-Motor leftA(4, 5, 15);
-Motor leftB(5, 6, 16);
+Motor rightB(42, 41, 40);
+
+Motor leftA(5, 4, 15);
+Motor leftB(7, 6, 16);
+
+int defaultSpeed = 255;
 
 void MoveRightSide(int speed, bool dir)
 {
@@ -47,8 +50,6 @@ void Stop()
   MoveRightSide(0, true);
   MoveLeftSide(0, true);
 }
-
-int defaultSpeed = 255;
 
 void setup()
 {
