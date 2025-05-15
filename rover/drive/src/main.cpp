@@ -1,11 +1,11 @@
 #include <Arduino.h>
 #include <motor.h>
 
-Motor rightA(1, 2, 39);
-Motor rightB(42, 41, 40);
+Motor rightA(1, 2);
+Motor rightB(41, 42);
 
-Motor leftA(5, 4, 15);
-Motor leftB(7, 6, 16);
+Motor leftA(4, 5);
+Motor leftB(7, 6);
 
 int defaultSpeed = 255;
 
@@ -47,8 +47,13 @@ void MoveLeft(int speed)
 
 void Stop()
 {
-  MoveRightSide(0, true);
-  MoveLeftSide(0, true);
+
+  leftA.stop();
+  leftB.stop();
+  rightA.stop();
+  rightB.stop();
+  Serial.println("STOP");
+  delay(500);
 }
 
 void setup()
