@@ -117,25 +117,26 @@ def move_directly(selfPos, target, speed):
         y = (selfPos.y + direction[1] * speed)
         return Point(x, y)
 
-def draw_point(x, y, screen, color=(0, 0, 0)):
-    pygame.draw.circle(screen, color, (x, y), 5)
+def draw_point(x, y, color=(0, 0, 0)):
+    pass
+    # pygame.draw.circle(screen, color, (x, y), 5)
 
 
-def draw_lineString(line, screen):
+def draw_lineString(line):
     x, y = line.xy
-    pygame.draw.lines(screen, (0, 0, 255), False, list(zip(x, y)), 2)
+    # pygame.draw.lines(screen, (0, 0, 255), False, list(zip(x, y)), 2)
 
 
-def display_node(node, screen):
+def display_node(node):
     x, y = node
-    pygame.draw.circle(screen, (0, 255, 0), (x, y), 2)
-    pygame.display.flip()
-    pygame.time.delay(100)
+    # pygame.draw.circle(screen, (0, 255, 0), (x, y), 2)
+    # pygame.display.flip()
+    # pygame.time.delay(100)
 
 
-def draw_path(path, screen):
+def draw_path(path):
     for node in path:
-        display_node(node, screen)
+        display_node(node)
 
 def find_closest(pos, others):
         if not others:

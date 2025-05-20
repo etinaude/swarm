@@ -13,9 +13,9 @@ size = [20, 20]
 
 
 class Gluer:
-    def __init__(self, x, y, screen, sim_speed=1):
+    def __init__(self, x, y, sim_speed=1):
         self.pos = Point(x, y)
-        self.screen = screen
+        # self.screen = screen
 
         self.glue_time = (3 * 1000) / sim_speed
         self.state = "idle"
@@ -29,7 +29,7 @@ class Gluer:
             self.brick.draw()
 
         location = (self.pos.x, self.pos.y, size[0], size[1])
-        pygame.draw.rect(self.screen, color, location)
+        # pygame.draw.rect(self.screen, color, location)
 
     def glue(self, brick):
         if self.state != "idle":

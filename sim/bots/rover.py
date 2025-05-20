@@ -3,7 +3,8 @@ from brick import Brick
 from paths import draw_lineString, find_path, move_directly, find_closest
 import pygame  # type: ignore
 from shapely.geometry import Polygon, Point, LineString
-
+from direct.showbase.ShowBase import ShowBase
+from panda3d.core import Vec3
 
 size = [10, 10]
 
@@ -12,7 +13,7 @@ size = [10, 10]
 # getting brick
 # going to gluer
 # waiting for gluer
-# going to drone
+# going to lifter
 # drop off brick
 
 # TODO: later
@@ -21,40 +22,50 @@ size = [10, 10]
 # get glue
 
 class Rover:
-    def __init__(self, x, y, state):
-        self.pos = Point(x, y)
-        self.screen = state.screen
+    def __init__(self, start_pos, render, state):
+        self.node = loader.loadModel("assests/rover.gltf")
+        self.node.reparentTo(render)
+        self.node.setPos(start_pos)
+        self.node.set_scale(10)
+        self.name = uuid.uuid4()
+
+        self.pos = start_pos
+
+        # self.pos = Point(x, y)
+        # self.screen = state.screen
         self.maze = state.house.maze
         self.brick_pile = state.brick_pile
-
+        
         self.state = "getting_brick"
         self.battery = 100
         self.brick = None
         self.target = None
         self.speed = 6 * state.sim_speed
-        self.id = uuid.uuid4()
         self.path = None
 
-    def draw(self):
-        color = (20, 120, 20)
-        if self.brick is not None:
-            self.brick.pos = Point(self.pos.x, self.pos.y)
+    def update(self):
+        self.node.setPos(self.node.getPos() + Vec3(0, 0, 0))
 
-            self.brick.draw()
 
-        location = (self.pos.x, self.pos.y, size[0], size[1])
-        pygame.draw.rect(self.screen, color, location)
+        # color = (20, 120, 20)
+        # if self.brick is not None:
+        #     self.brick.pos = Point(self.pos.x, self.pos.y)
 
-        if self.path is None or len(self.path) < 2:
-            return
+        #     self.brick.draw()
 
-        line = LineString(self.path)
-        draw_lineString(line, self.screen)
+        # location = (self.pos.x, self.pos.y, size[0], size[1])
+        # # pygame.draw.rect(self.screen, color, location)
+
+        # if self.path is None or len(self.path) < 2:
+        #     return
+
+        # line = LineString(self.path)
+        # # draw_lineString(line, self.screen)
 
     def __repr__(self):
         return f"Rover - ({self.pos.x}, {self.pos.y})"
 
-    def make_move(self, gluers, drones):
+    def make_move(self, gluers, lifters):
         # self.decide_next_task()
         self.battery -= 1
 
@@ -67,8 +78,8 @@ class Rover:
         if self.state == "wait_for_gluer":
             self.wait_for_gluer(gluers)
 
-        if self.state == "goto_drone":
-            self.goto_drone(drones)
+        if self.state == "goto_lifter":
+            self.goto_lifter(lifters)
 
         if self.state == "idle":
             self.idle()
@@ -81,7 +92,7 @@ class Rover:
 
         arrived = self.move_along_path()
         if arrived:
-            self.brick = Brick(self.pos.x, self.pos.y, 0, 0, self.screen)
+            self.brick = Brick(self.pos.x, self.pos.y, 0, 0)
             self.path = None
             self.state = "goto_gluer" 
 
@@ -127,13 +138,13 @@ class Rover:
         self.brick = gluer.give_brick()
         self.target = None
         self.path = None
-        self.state = "goto_drone"
+        self.state = "goto_lifter"
 
-    def goto_drone(self, drones):
-        idle_drones = list(
-            filter(lambda x: x.state == "waiting_for_brick", drones)
+    def goto_lifter(self, lifters):
+        idle_lifters = list(
+            filter(lambda x: x.state == "waiting_for_brick", lifters)
         )
-        target = find_closest(self.pos, idle_drones)
+        target = find_closest(self.pos, idle_lifters)
 
         if target is None:
             return
@@ -147,7 +158,7 @@ class Rover:
 
         arrived = self.move_along_path()
         if arrived:
-            print("arrived at drone")
+            print("arrived at lifter")
             target.get_brick(self.brick)
             self.brick = None
             self.state = "idle"

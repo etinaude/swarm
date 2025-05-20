@@ -1,0 +1,7118 @@
+{
+    "accessors": [
+        {
+            "bufferView": 0,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                0.10000000149011612,
+                0.06499999761581421,
+                0.05000000074505806
+            ],
+            "min": [
+                0.10000000149011612,
+                0.0,
+                -0.05000000074505806
+            ],
+            "name": "mesh0_coord_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 1,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "min": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "name": "mesh0_norm_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 2,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "name": "mesh0_texcoord_accessor",
+            "type": "VEC2"
+        },
+        {
+            "bufferView": 3,
+            "componentType": 5125,
+            "count": 6,
+            "max": [
+                3
+            ],
+            "min": [
+                0
+            ],
+            "name": "mesh0_idx_accessor",
+            "type": "SCALAR"
+        },
+        {
+            "bufferView": 4,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                0.10000000149011612,
+                0.06499999761581421,
+                -0.05000000074505806
+            ],
+            "min": [
+                -0.10000000149011612,
+                0.0,
+                -0.05000000074505806
+            ],
+            "name": "mesh1_coord_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 5,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                1.3877787807814457e-16,
+                -0.0,
+                -1.0
+            ],
+            "min": [
+                1.3877787807814457e-16,
+                -0.0,
+                -1.0
+            ],
+            "name": "mesh1_norm_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 6,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "name": "mesh1_texcoord_accessor",
+            "type": "VEC2"
+        },
+        {
+            "bufferView": 7,
+            "componentType": 5125,
+            "count": 6,
+            "max": [
+                3
+            ],
+            "min": [
+                0
+            ],
+            "name": "mesh1_idx_accessor",
+            "type": "SCALAR"
+        },
+        {
+            "bufferView": 8,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                -0.10000000149011612,
+                0.06499999761581421,
+                0.05000000074505806
+            ],
+            "min": [
+                -0.10000000149011612,
+                0.0,
+                -0.05000000074505806
+            ],
+            "name": "mesh2_coord_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 9,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                -1.0,
+                -0.0,
+                -0.0
+            ],
+            "min": [
+                -1.0,
+                -0.0,
+                -0.0
+            ],
+            "name": "mesh2_norm_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 10,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "name": "mesh2_texcoord_accessor",
+            "type": "VEC2"
+        },
+        {
+            "bufferView": 11,
+            "componentType": 5125,
+            "count": 6,
+            "max": [
+                3
+            ],
+            "min": [
+                0
+            ],
+            "name": "mesh2_idx_accessor",
+            "type": "SCALAR"
+        },
+        {
+            "bufferView": 12,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                0.10000000149011612,
+                0.06499999761581421,
+                0.05000000074505806
+            ],
+            "min": [
+                -0.10000000149011612,
+                0.0,
+                0.05000000074505806
+            ],
+            "name": "mesh3_coord_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 13,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                -1.3877787807814457e-16,
+                0.0,
+                1.0
+            ],
+            "min": [
+                -1.3877787807814457e-16,
+                0.0,
+                1.0
+            ],
+            "name": "mesh3_norm_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 14,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "name": "mesh3_texcoord_accessor",
+            "type": "VEC2"
+        },
+        {
+            "bufferView": 15,
+            "componentType": 5125,
+            "count": 6,
+            "max": [
+                3
+            ],
+            "min": [
+                0
+            ],
+            "name": "mesh3_idx_accessor",
+            "type": "SCALAR"
+        },
+        {
+            "bufferView": 16,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                0.10000000149011612,
+                0.06499999761581421,
+                0.05000000074505806
+            ],
+            "min": [
+                -0.10000000149011612,
+                0.06499999761581421,
+                -0.05000000074505806
+            ],
+            "name": "mesh4_coord_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 17,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "min": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "name": "mesh4_norm_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 18,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "name": "mesh4_texcoord_accessor",
+            "type": "VEC2"
+        },
+        {
+            "bufferView": 19,
+            "componentType": 5125,
+            "count": 6,
+            "max": [
+                3
+            ],
+            "min": [
+                0
+            ],
+            "name": "mesh4_idx_accessor",
+            "type": "SCALAR"
+        },
+        {
+            "bufferView": 20,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                0.10000000149011612,
+                0.0,
+                0.05000000074505806
+            ],
+            "min": [
+                -0.10000000149011612,
+                0.0,
+                -0.05000000074505806
+            ],
+            "name": "mesh5_coord_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 21,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                -0.0,
+                -1.0,
+                -0.0
+            ],
+            "min": [
+                -0.0,
+                -1.0,
+                -0.0
+            ],
+            "name": "mesh5_norm_accessor",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 22,
+            "componentType": 5126,
+            "count": 4,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "name": "mesh5_texcoord_accessor",
+            "type": "VEC2"
+        },
+        {
+            "bufferView": 23,
+            "componentType": 5125,
+            "count": 6,
+            "max": [
+                3
+            ],
+            "min": [
+                0
+            ],
+            "name": "mesh5_idx_accessor",
+            "type": "SCALAR"
+        }
+    ],
+    "asset": {
+        "generator": "ONSHAPE BY PTC INC, 1.198",
+        "version": "2.0"
+    },
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "name": "mesh0_coord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 48,
+            "name": "mesh0_norm_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 32,
+            "byteOffset": 96,
+            "name": "mesh0_texcoord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 24,
+            "byteOffset": 128,
+            "name": "mesh0_idx_bufferView",
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 152,
+            "name": "mesh1_coord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 200,
+            "name": "mesh1_norm_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 32,
+            "byteOffset": 248,
+            "name": "mesh1_texcoord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 24,
+            "byteOffset": 280,
+            "name": "mesh1_idx_bufferView",
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 304,
+            "name": "mesh2_coord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 352,
+            "name": "mesh2_norm_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 32,
+            "byteOffset": 400,
+            "name": "mesh2_texcoord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 24,
+            "byteOffset": 432,
+            "name": "mesh2_idx_bufferView",
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 456,
+            "name": "mesh3_coord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 504,
+            "name": "mesh3_norm_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 32,
+            "byteOffset": 552,
+            "name": "mesh3_texcoord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 24,
+            "byteOffset": 584,
+            "name": "mesh3_idx_bufferView",
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 608,
+            "name": "mesh4_coord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 656,
+            "name": "mesh4_norm_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 32,
+            "byteOffset": 704,
+            "name": "mesh4_texcoord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 24,
+            "byteOffset": 736,
+            "name": "mesh4_idx_bufferView",
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 760,
+            "name": "mesh5_coord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 48,
+            "byteOffset": 808,
+            "name": "mesh5_norm_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 32,
+            "byteOffset": 856,
+            "name": "mesh5_texcoord_bufferView",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 24,
+            "byteOffset": 888,
+            "name": "mesh5_idx_bufferView",
+            "target": 34963
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 912,
+            "name": "Total_buffer",
+            "uri": "data:application/octet-stream;base64,zczMPbgehT3NzEw9zczMPQAAAADNzEw9zczMPQAAAADNzEy9zczMPbgehT3NzEy9AACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAIA/AAAAAAAAgD8AAAAAAQAAAAIAAAACAAAAAwAAAAAAAADNzMw9uB6FPc3MTL3NzMw9AAAAAM3MTL3NzMy9AAAAAM3MTL3NzMy9uB6FPc3MTL0AACAlAAAAgAAAgL8AACAlAAAAgAAAgL8AACAlAAAAgAAAgL8AACAlAAAAgAAAgL8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAABAAAAAgAAAAIAAAADAAAAAAAAAM3MzL24HoU9zcxMvc3MzL0AAAAAzcxMvc3MzL0AAAAAzcxMPc3MzL24HoU9zcxMPQAAgL8AAACAAAAAgAAAgL8AAACAAAAAgAAAgL8AAACAAAAAgAAAgL8AAACAAAAAgAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAgAAAAMAAAAAAAAAzczMvbgehT3NzEw9zczMvQAAAADNzEw9zczMPQAAAADNzEw9zczMPbgehT3NzEw9AAAgpQAAAAAAAIA/AAAgpQAAAAAAAIA/AAAgpQAAAAAAAIA/AAAgpQAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAACAPwAAgD8AAAAAAQAAAAIAAAACAAAAAwAAAAAAAADNzMy9uB6FPc3MTD3NzMw9uB6FPc3MTD3NzMw9uB6FPc3MTL3NzMy9uB6FPc3MTL0AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAgD8AAAAAAACAPwAAAAABAAAAAgAAAAIAAAADAAAAAAAAAM3MzL0AAAAAzcxMvc3MzD0AAAAAzcxMvc3MzD0AAAAAzcxMPc3MzL0AAAAAzcxMPQAAAIAAAIC/AAAAgAAAAIAAAIC/AAAAgAAAAIAAAIC/AAAAgAAAAIAAAIC/AAAAgAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAgAAAAMAAAAAAAAA"
+        }
+    ],
+    "extensionsUsed": [
+        "PTC_onshape_metadata"
+    ],
+    "materials": [
+        {
+            "doubleSided": true,
+            "name": "0.972549_0.607843_0.396078_0.000000_0.000000",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.9725490212440491,
+                    0.6078431606292725,
+                    0.3960784375667572,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "mesh0_mesh",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 1,
+                        "POSITION": 0,
+                        "TEXCOORD_0": 2
+                    },
+                    "indices": 3,
+                    "material": 0
+                },
+                {
+                    "attributes": {
+                        "NORMAL": 5,
+                        "POSITION": 4,
+                        "TEXCOORD_0": 6
+                    },
+                    "indices": 7,
+                    "material": 0
+                },
+                {
+                    "attributes": {
+                        "NORMAL": 9,
+                        "POSITION": 8,
+                        "TEXCOORD_0": 10
+                    },
+                    "indices": 11,
+                    "material": 0
+                },
+                {
+                    "attributes": {
+                        "NORMAL": 13,
+                        "POSITION": 12,
+                        "TEXCOORD_0": 14
+                    },
+                    "indices": 15,
+                    "material": 0
+                },
+                {
+                    "attributes": {
+                        "NORMAL": 17,
+                        "POSITION": 16,
+                        "TEXCOORD_0": 18
+                    },
+                    "indices": 19,
+                    "material": 0
+                },
+                {
+                    "attributes": {
+                        "NORMAL": 21,
+                        "POSITION": 20,
+                        "TEXCOORD_0": 22
+                    },
+                    "indices": 23,
+                    "material": 0
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "children": [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17,
+                19,
+                21,
+                23,
+                25,
+                27,
+                29,
+                31,
+                33,
+                35,
+                37,
+                39,
+                41,
+                43,
+                45,
+                47,
+                49,
+                51,
+                53,
+                55,
+                57,
+                59,
+                61,
+                63,
+                65,
+                67,
+                69,
+                71,
+                73,
+                75,
+                77,
+                79,
+                81,
+                83,
+                85,
+                87,
+                89,
+                91,
+                93,
+                95,
+                97,
+                99,
+                101,
+                103,
+                105,
+                107,
+                109,
+                111,
+                113,
+                115,
+                117,
+                119,
+                121,
+                123,
+                125,
+                127,
+                129,
+                131,
+                133,
+                135,
+                137,
+                139,
+                141,
+                143,
+                145,
+                147,
+                149,
+                151,
+                153,
+                155,
+                157,
+                159,
+                161,
+                163,
+                165,
+                167,
+                169,
+                171,
+                173,
+                175,
+                177,
+                179,
+                181,
+                183,
+                185,
+                187,
+                189,
+                191,
+                193,
+                195,
+                197,
+                199,
+                201,
+                203,
+                205,
+                207,
+                209,
+                211,
+                213,
+                215,
+                217,
+                219,
+                221,
+                223,
+                225,
+                227,
+                229,
+                231,
+                233,
+                235,
+                237,
+                239,
+                241,
+                243,
+                245,
+                247,
+                249,
+                251,
+                253,
+                255,
+                257,
+                259,
+                261,
+                263,
+                265,
+                267,
+                269,
+                271,
+                273,
+                275,
+                277,
+                279,
+                281,
+                283,
+                285,
+                287
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Assembly"
+                }
+            },
+            "name": "brick pile"
+        },
+        {
+            "children": [
+                2
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mhn4AhD93Jl0O8tP/"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.38999998569488525,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                4
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mmj8AhRpNT65slFfG"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.12999999523162842,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                6
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M3Xey9rQ1680tnD9d"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.06499999761581421,
+                5.551115123125783e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                8
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M7N5o/RWIAWJVu0C9"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.06499999761581421,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                10
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mq+6K4sDbC861GUp0"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.19499999284744263,
+                0.0,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                12
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mb6TzD16AHqfpGAx1"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.06499999761581421,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                14
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MMz/xDIbUWBc3FEhp"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -1.1102230246251565e-16,
+                0.38999998569488525,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                16
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MhowLMJlOcLGSIzH8"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -1.3877787807814457e-17,
+                0.19499999284744263,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                18
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MME5tuAwE0l7tr2V4"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.06499999761581421,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                20
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MJpq4IGO6X4KFcppE"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.06499999761581421,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                22
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MUIhinr/WFBf29xai"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.06499999761581421,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                24
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M0csBqRAanKjwx2c2"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.38999998569488525,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                26
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MqsLf1tihsnz3hfdh"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.32499998807907104,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                28
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MnUoN7U5mnMUbyy0V"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.19499999284744263,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                30
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mf6++tg4xMashUx32"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.32499998807907104,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                32
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MP9f1FnaEgmmfkqDB"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.25999999046325684,
+                1.1102230246251565e-16,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                34
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MBEEe3olLIHNZZbur"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.32499998807907104,
+                1.1102230246251565e-16,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                36
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mv7+ZtUf+k7zjSmjK"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.12999999523162842,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                38
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MkW0JJTukJUCssLJ1"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.25999999046325684,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                40
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MTDu3jyfEvtk7cY+F"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.12999999523162842,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                42
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MkwgBPxHQJavDqn+g"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.25999999046325684,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                44
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MKskiMaYZ4cyIUaxm"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.19499999284744263,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                46
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M7s/93YkFscbd+p9V"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.06499999761581421,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                48
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MPg2ffIeyKinsfO4s"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.38999998569488525,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                50
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MG9h7ZYv5o22ppkOh"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -1.6653345369377348e-16,
+                0.32499998807907104,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                52
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MlQ9gP3ezUeKskRar"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.38999998569488525,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                54
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MFrNmySG+W5L7KlKe"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.19499999284744263,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                56
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MYiSkqAc+X5TrogMc"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.19499999284744263,
+                -5.551115123125783e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                58
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MS+hW03/luafXJirq"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.06499999761581421,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                60
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M3BP9aB9ObwvtdUtT"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.12999999523162842,
+                1.6653345369377348e-16,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                62
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MEQQMcsoDNBUR8aQd"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.19499999284744263,
+                5.551115123125783e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                64
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MmH3pfEYAJCHK6W57"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.25999999046325684,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                66
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MFMgMhLmAbEh1YsB7"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                4.597017211338539e-17,
+                0.06499999761581421,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                68
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M5NBTIouFSTTQYTt5"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.19499999284744263,
+                1.6653345369377348e-16,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                70
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mo9Vx3Sul6sQ0w2fT"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.19499999284744263,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                72
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MZ7zqqCAq9wHu2zHn"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.6653345369377348e-16,
+                0.25999999046325684,
+                0.0,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                74
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "My+it69XMqLbqRTWC"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.06499999761581421,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                76
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M9LC5ilwLSOQZDoPR"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.06499999761581421,
+                -5.551115123125783e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                78
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MORXHYGVb7uOi5dce"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.25999999046325684,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                80
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MtNCcazQZkBRU13Nt"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.32499998807907104,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                82
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MTulD7SZF9xEXX3Uj"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.25999999046325684,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                84
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M5d6/76qpD+Ve8lzK"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.19499999284744263,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                86
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MKIB9vPIKsE66JRk6"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.12999999523162842,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                88
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MeGV0OX+uFa5ZFF33"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.06499999761581421,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                90
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mwbpa6dxZ/iSE6GtA"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.0,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                92
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mh5/WSxNlG2n+phC+"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.38999998569488525,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                94
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mb9pYRDnuw/eGRIWU"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.12999999523162842,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                96
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Ms5yRT4xw0qMs+VOV"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.12999999523162842,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                98
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MQ1/115AoELpGKNJ1"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.12999999523162842,
+                5.551115123125783e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                100
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MXwqcLjfDz+gO8/AV"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.38999998569488525,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                102
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Ml355T4FSLKsoWuQo"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.25999999046325684,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                104
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MB5VDMSpv/JyeWwcY"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.25999999046325684,
+                1.1102230246251565e-16,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                106
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mgro+ipYV3KgwVtn/"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.25999999046325684,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                108
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MNMTlNzhkG9soFJ7A"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.19499999284744263,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                110
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MyobV4I678vAbxXsP"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.25999999046325684,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                112
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MtDxOxgEeVJvEVSw5"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                114
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MQASVf65SktORGDL0"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.12999999523162842,
+                5.551115123125783e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                116
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MeiDbfzkNm5KBzcj1"
+                    ]
+                }
+            },
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                118
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M5l26sX5ZvZnDWnEi"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.6653345369377348e-16,
+                0.25999999046325684,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                120
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MPIqRD59Rj4gSRnDy"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.19499999284744263,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                122
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MIj7+iMqUbdm0cU9U"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.32499998807907104,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                124
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MXemq0IopFYBo1ca5"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.25999999046325684,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                126
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MMhNk7N7+jcoLPISN"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.38999998569488525,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                128
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MYKRu7+6jiZIUO0hR"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -1.6653345369377348e-16,
+                0.32499998807907104,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                130
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M8IclsRrhV/xdw8+h"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.12999999523162842,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                132
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MMSwrwovlePA/Zuue"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.25999999046325684,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                134
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mv0WlauVp79WnotHP"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.25999999046325684,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                136
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M3+Yk6CaY6gvIyHOi"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.06499999761581421,
+                2.220446049250313e-16,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                138
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MCgrGwGwJnv5mEzcj"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.06499999761581421,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                140
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MGQiwfs97fHv9k/Hc"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.19499999284744263,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                142
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MPjfWrsreXZSV/Zuu"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.32499998807907104,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                144
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M+Y3r1MSNdLKnGbtI"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.06499999761581421,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                146
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MjL6Yr9tglNZcm+o+"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.38999998569488525,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                148
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Ml+mEyo7CuPNs4hbt"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.32499998807907104,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                150
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MC//oAYVmjHXlJV6V"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.06499999761581421,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                152
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "ModnADelxQZGpO3dr"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.32499998807907104,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                154
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Me4fuUI5q/cjHIjSz"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                1.8214596497756474e-17,
+                0.06499999761581421,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                156
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mr2EKa9HAUzZ2xREV"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.19499999284744263,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                158
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mk6cfuW30wQ0HKT0e"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.12999999523162842,
+                5.551115123125783e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                160
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MYrWDUIAE+sbdh/U1"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.12999999523162842,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                162
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MuPBKYog/sXsgRzzc"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.25999999046325684,
+                1.6653345369377348e-16,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                164
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MMtk3MtrHQqlwPmXq"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.06499999761581421,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                166
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M/N44CTACLnQ28ifQ"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                2.7755575615628914e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                168
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M79011m6ybD7NiTed"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                2.7755575615628914e-17,
+                0.12999999523162842,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                170
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M9Tp0gySVJdB8wEWO"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.19499999284744263,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                172
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MqhbtoMXl8aoZ9TvA"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.06499999761581421,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                174
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MQTK8dgcFyOVkgdd+"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.19499999284744263,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                176
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MNUteE2OFtDqmGiiM"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.25999999046325684,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                178
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MABRlyKqQm0Ou4zac"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.0,
+                9.367506770274758e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                180
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mzz/FVgFukABhKRHp"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.32499998807907104,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                182
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MDxmJcHO5F3fzui5w"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.12999999523162842,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                184
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M/8JzxHiTg9JX3MLd"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                8.326672684688674e-17,
+                0.12999999523162842,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                186
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "McQF7yiRj8k1TBI9s"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.25999999046325684,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                188
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MlbiKFk2kzbrpjAOj"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -1.3877787807814457e-17,
+                0.06499999761581421,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                190
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MRyHwzOv4n7YwEaD1"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.32499998807907104,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                192
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MgkVbbKKPTno/2IGX"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.32499998807907104,
+                1.6653345369377348e-16,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                194
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MEydAlc/pTUZaRGqM"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.12999999523162842,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                196
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "McwVubLMBhncpPpdK"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.19499999284744263,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                198
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MtPMfZUvxoU7iynzq"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.38999998569488525,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                200
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MpR22u2QIvBapaujk"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.06499999761581421,
+                5.551115123125783e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                202
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M0mfARBWPD/8jLuK+"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.32499998807907104,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                204
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MZS2rqUU46pNRO9yv"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.19499999284744263,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                206
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MdP7+enlXOcomFlMs"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.12999999523162842,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                208
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MX2R4cjevEBYofPqp"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.38999998569488525,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                210
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MVrEXLlu+DXOTBNe9"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.19499999284744263,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                212
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MZ6EWIZEoqPyABDpS"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.25999999046325684,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                214
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mdte+P3UbXx2ttyvG"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.12999999523162842,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                216
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MuHgEOG/7RdK7lWqe"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.06499999761581421,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                218
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MOymvMw9qCp2G5Jxp"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.1102230246251565e-16,
+                0.32499998807907104,
+                0.0,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                220
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MmFwFjivcTA/JUFna"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.12999999523162842,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                222
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MLwzG5qwd3ARfYxL1"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.12999999523162842,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                224
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MGyphCHK8LOgKkaDt"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                2.7755575615628914e-17,
+                1.457167719820518e-16,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                226
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MKGuOienzYjhPRIsp"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                228
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "My8WxcAtuhukKz0sD"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.06499999761581421,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                230
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M0dYhYKK3f9EOUKJc"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.38999998569488525,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                232
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MKxa0lhSMzTO/+apk"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.25999999046325684,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                234
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MFDBmCgMw5QATYa3X"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -1.1102230246251565e-16,
+                0.38999998569488525,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                236
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MZG3aL7o8uYYvBHsR"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.38999998569488525,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                238
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mi26RFqGM9qYdumIw"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                2.7755575615628914e-17,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                240
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mtz9c630jDVpdKkY0"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.32499998807907104,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                242
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MLCVE2yCMBF+BwYxM"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.32499998807907104,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                244
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mp4r1z+yZ7ZoaPfx7"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.1102230246251565e-16,
+                0.32499998807907104,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                246
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MPmP0Adkdpzh0qReo"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.25999999046325684,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                248
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MvuYbhQeodSL3szWK"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -1.1102230246251565e-16,
+                0.38999998569488525,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                250
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MeJ1CJ5hL7Akph2PS"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.32499998807907104,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                252
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mc44SAN31miOAzV1h"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.25999999046325684,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                254
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mv6mHq6a9DSYG1vgn"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.32499998807907104,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                256
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MXP2umoooLULJ/cEP"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.6000000238418579,
+                0.12999999523162842,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                258
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MYsWN20qXLovlNy6H"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -1.1102230246251565e-16,
+                0.38999998569488525,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                260
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M2fVukCeIMcdZMeXc"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.25999999046325684,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                262
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M5b8jgUN3Lyzy2mWs"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -2.7755575615628914e-17,
+                0.12999999523162842,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                264
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MQNz/Clx9hiywSEzH"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.25999999046325684,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                266
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "Mw43aZspPjdtefXYZ"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.06499999761581421,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                268
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MXQUhWE8ek/QC42L4"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.20000000298023224,
+                0.19499999284744263,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                270
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MS544eGSXG8/A/k6U"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.12999999523162842,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                272
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M7L0gwE7pn+9s0Av+"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.4000000059604645,
+                0.12999999523162842,
+                0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                274
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MRbLN9yOkttvkYFQd"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.4000000059604645,
+                0.32499998807907104,
+                0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                276
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MYY9FbVSawAVj0Hve"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.20000000298023224,
+                0.32499998807907104,
+                5.551115123125783e-17,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                278
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MS9Shj08EuEQ8krlU"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                1.3877787807814457e-17,
+                0.19499999284744263,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                280
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MyBsnWLRI0Intvgri"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                -1.6653345369377348e-16,
+                0.32499998807907104,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                282
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MfUPlrFxCDWa1WKIP"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                4.163336342344337e-17,
+                0.19499999284744263,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                284
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "M+YnpqHLz/CI/dfKb"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.19499999284744263,
+                -0.20000000298023224,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                286
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "MxyGmvp5AVbh4Akt1"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.19499999284744263,
+                0.30000001192092896,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        },
+        {
+            "children": [
+                288
+            ],
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Instance",
+                    "id": [
+                        "McpWPO9uB6SqySP7X"
+                    ]
+                }
+            },
+            "matrix": [
+                1.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                2.7755575615628914e-16,
+                0.0,
+                -1.0,
+                0.0,
+                0.6000000238418579,
+                0.32499998807907104,
+                -0.10000000149011612,
+                1.0
+            ],
+            "name": "occurrence of Brick"
+        },
+        {
+            "extensions": {
+                "PTC_onshape_metadata": {
+                    "entity_type": "Body",
+                    "id": [
+                        "JPD"
+                    ]
+                }
+            },
+            "mesh": 0,
+            "name": "Brick"
+        }
+    ],
+    "scene": 0,
+    "scenes": [
+        {
+            "name": "Root",
+            "nodes": [
+                0
+            ]
+        }
+    ]
+}

@@ -5,8 +5,7 @@ from shapely.geometry import Polygon, Point
 
 
 class Brick:
-    def __init__(self, x, y, layer, rotation, screen):
-        self.screen = screen
+    def __init__(self, x, y, layer, rotation):
         self.pos = Point(x, y)
         self.layer = layer
         self.rotation = rotation
@@ -14,7 +13,7 @@ class Brick:
         self.has_adhesive = False
 
         self.rover_claimed_by = None
-        self.drone_claimed_by = None
+        self.lifter_claimed_by = None
 
         self.id = uuid.uuid4()
 
@@ -25,12 +24,12 @@ class Brick:
         else:
             location = (self.pos.x, self.pos.y, brick_size[1], brick_size[0]) 
 
-        pygame.draw.rect(
-            self.screen,
-            outline,
-            location,
-            width=1,
-        )
+        # pygame.draw.rect(
+        #     self.screen,
+        #     outline,
+        #     location,
+        #     width=1,
+        # )
 
     def draw(self):
         color = (79, 39, 2) if self.layer % 2 else (97, 47, 1)
@@ -41,13 +40,13 @@ class Brick:
         else:
             location = (self.pos.x, self.pos.y, brick_size[1], brick_size[0]) 
 
-        pygame.draw.rect(self.screen, color, location)
-        pygame.draw.rect(
-            self.screen,
-            outline,
-            location,
-            width=1,
-        )
+        # pygame.draw.rect(self.screen, color, location)
+        # pygame.draw.rect(
+        #     self.screen,
+        #     outline,
+        #     location,
+        #     width=1,
+        # )
 
         if self.has_adhesive:
             glue_dot_size = 5
@@ -55,7 +54,7 @@ class Brick:
 
             x = self.pos.x + brick_size[0] / 2
             y = self.pos.y + brick_size[1] / 2
-            pygame.draw.circle(self.screen, adhesive_color, (x, y), glue_dot_size)
+            # pygame.draw.circle(self.screen, adhesive_color, (x, y), glue_dot_size)
 
     def __repr__(self):
         return "brick" + self.pos.__repr__()

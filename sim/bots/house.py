@@ -22,9 +22,8 @@ bottom_left = Point(
 
 
 class House:
-    def __init__(self, screen):
+    def __init__(self):
         self.bricks = []
-        self.screen = screen
         self.make_structure()
         
         self.maze = []
@@ -46,9 +45,9 @@ class House:
                 bottom_wall_x = x if (layer % 2) else x + brick_size[1]
                 top_wall_x = x + brick_size[1] if (layer % 2) else x
 
-                top_brick = Brick(top_wall_x, top_left.y, layer, 0, self.screen)
+                top_brick = Brick(top_wall_x, top_left.y, layer, 0)
                 bottom_brick = Brick(
-                    bottom_wall_x, bottom_wall_y, layer, 0, self.screen
+                    bottom_wall_x, bottom_wall_y, layer, 0
                 )
                 self.bricks.extend([top_brick, bottom_brick])
 
@@ -61,8 +60,8 @@ class House:
                 right_wall_y = y + brick_size[1] if (layer % 2) else y
                 left_wall_y = y if (layer % 2) else y + brick_size[1]
 
-                left_brick = Brick(top_left.x, left_wall_y, layer, 90, self.screen)
-                right_brick = Brick(right_wall_x, right_wall_y, layer, 90, self.screen)
+                left_brick = Brick(top_left.x, left_wall_y, layer, 90)
+                right_brick = Brick(right_wall_x, right_wall_y, layer, 90)
                 self.bricks.extend([left_brick, right_brick])
 
     def draw(self):
@@ -91,7 +90,7 @@ class House:
                     lambda x: (
                         (not x.placed)
                         and x.layer == current_layer
-                        and x.drone_claimed_by
+                        and x.lifter_claimed_by
                         and not (x.rover_claimed_by)
                     ),
                     self.bricks,
@@ -100,7 +99,7 @@ class House:
             current_layer += 1
         return canidates
 
-    def get_drone_bricks(self):
+    def get_lifter_bricks(self):
         current_layer = self.current_layer()
         canidates = []
         while canidates == [] and current_layer < house_size[2]:
@@ -109,7 +108,7 @@ class House:
                     lambda x: (
                         (not x.placed)
                         and x.layer == current_layer
-                        and not (x.drone_claimed_by)
+                        and not (x.lifter_claimed_by)
                     ),
                     self.bricks,
                 )
@@ -152,11 +151,11 @@ class House:
 
 
 
-    def draw_maze(self):
-        for x in range(len(self.maze)):
-            for y in range(0, len(self.maze[0]),10):
-                if self.maze[x][y] == 1:
-                    draw_point(x, y, self.screen, (255, 0, 0))
-                else:
-                    pass
-                    # draw_point(x, y, self.screen)
+    # def draw_maze(self):
+    #     for x in range(len(self.maze)):
+    #         for y in range(0, len(self.maze[0]),10):
+    #             if self.maze[x][y] == 1:
+    #                 draw_point(x, y, self.screen, (255, 0, 0))
+    #             else:
+    #                 pass
+    #                 # draw_point(x, y, self.screen)

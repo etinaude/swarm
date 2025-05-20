@@ -1,29 +1,20 @@
-import json
 import random
 from global_state import State
-import pygame  # type: ignore
-from specs import rover_count, gluer_count, drone_count, map_size
+from specs import rover_count, gluer_count, lifter_count, map_size
 from brick import Brick
 from bots.house import House
 from bots.gluer import Gluer
 from bots.rover import Rover
-from bots.drone import Drone
-from shapely.geometry import Polygon, Point
+from bots.lifter import Lifter
+from shapely.geometry import Point
 import numpy as np
-import concurrent.futures
+from direct.showbase.ShowBase import ShowBase
+from panda3d.core import AmbientLight, DirectionalLight, Point3
 
-
-pygame.init()
-screen = pygame.display.set_mode((map_size[0], map_size[1]))
-clock = pygame.time.Clock()
 sim_speed = 2
 
-house = House(screen)
+house = House()
 
-rovers = []
-gluers = []
-drones = []
-running = True
 brick_pile = Point(10, 10)
 
 pile = Brick(
@@ -31,89 +22,134 @@ pile = Brick(
     brick_pile.y,
     0,
     0,
-    screen,
 )
 
-def init_robots():
-    i = 0
-    while i < gluer_count:
-        x = random.randint(200, map_size[0] - 200)
-        y = random.randint(0, 100)
+# def draw():
+#     house.draw_goal()
+#     house.draw()
+#     pile.draw()
 
-        pos = Point(x, y)
-        found = False
-        for gluer in gluers:
-            if gluer.pos.distance(pos) < 50:
-                found = True
-                break
-        if found:
-            continue
-        i += 1
-        gluers.append(Gluer(x, y, screen, sim_speed))
+#     for brick in state.loose_bricks:
+#         brick.draw()
 
-    minx, miny, maxx, maxy = house.polygon.bounds
-    while len(drones) < drone_count:
-        pnt = Point(np.random.uniform(minx, maxx), np.random.uniform(miny, maxy))
-        if house.polygon.contains(pnt):
-            drones.append(Drone(pnt.x, pnt.y, state))
+#     for rover in rovers:
+#         rover.draw()
 
-    for i in range(rover_count):
-        x = random.randint(0, 1000)
-        y = random.randint(0, 100)
-        rover = Rover(x, y, state)
-        rovers.append(rover)
+#     for gluer in gluers:
+#         gluer.draw()
+
+#     for lifter in lifters:
+#         lifter.draw()
+
+    # pygame.display.flip()
+    # clock.tick(10)
+
+# def make_rover_move():
+#     with concurrent.futures.ThreadPoolExecutor() as executor:
+#         executor.map(lambda rover: rover.make_move(gluers, lifters), rovers)
 
 
-def draw():
-    screen.fill((255, 255, 255))
-    house.draw_goal()
-    house.draw()
-    pile.draw()
+# def step():
+#     make_rover_move()
 
-    for brick in state.loose_bricks:
-        brick.draw()
+#     for lifter in lifters:
+#         lifter.make_move(state.loose_bricks, house)
 
-    for rover in rovers:
-        rover.draw()
+#     for gluer in gluers:
+#         gluer.update()
 
-    for gluer in gluers:
-        gluer.draw()
-
-    for drone in drones:
-        drone.draw()
-
-    pygame.display.flip()
-    clock.tick(10)
-
-def make_rover_move():
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(lambda rover: rover.make_move(gluers, drones), rovers)
+#     draw()
 
 
-def step():
-    make_rover_move()
 
-    for drone in drones:
-        drone.make_move(state.loose_bricks, house)
+class Simulation(ShowBase):
+    def __init__(self):
+        super().__init__()
+        self.speed = 1.0
 
-    for gluer in gluers:
-        gluer.update()
+        self.lifters = []
+        
+        self.rovers = []
+        self.gluers = []
+        self.house = House()
+        self.pile = None
 
-    draw()
+        self.state = State(self.gluers, self.pile, self.house, self.speed)
+
+
+        self.pile = self.loader.load_model("assests/brick pile.gltf") 
+        self.pile.reparent_to(self.render)
+        self.pile.set_scale(5)
+        self.pile.set_pos(0, 0, 0)
+
+
+        for i in range(rover_count):
+            x = random.randint(0, 50)
+            y = random.randint(0, 50)
+
+            robot = Rover(start_pos=(0, 10, 0), render=self.render, state=self.state)
+
+            self.rovers.append(robot)
+
+        # for i in range(lifter_count):
+        #     x = random.randint(0, 50)
+        #     y = random.randint(0, 20)
+
+        #     robot = self.loader.load_model("assests/lifter.gltf") 
+        #     robot.reparent_to(self.render)
+        #     robot.set_scale(10)
+        #     robot.set_pos(50, 0, 0)
+        #     self.lifters.append(robot)
+
+        # for i in range(gluer_count):
+        #     x = random.randint(0, 5)
+        #     y = random.randint(0, 20)
+
+        #     robot = self.loader.load_model("assests/glue.gltf") 
+        #     robot.reparent_to(self.render)
+        #     robot.set_pos(x, y, 0)
+        #     robot.set_scale(10)
+
+        #     self.gluers.append(robot)
+
+
+
+
+        # Add some basic lighting
+        ambient = AmbientLight("ambient")
+        ambient.set_color((0.9, 0.9, 0.9, 1))
+        ambient_node = self.render.attach_new_node(ambient)
+        self.render.set_light(ambient_node)
+
+        # directional = DirectionalLight("directional")
+        # directional.set_color((0.8, 0.8, 0.8, 1))
+        # directional_node = self.render.attach_new_node(directional)
+        # directional_node.set_hpr(-45, -45, 0)
+        # self.render.set_light(directional_node)
+
+        # Enable basic camera controls
+        self.disable_mouse()
+        self.camera.set_pos(25,25,100)
+        self.camera.look_at(Point3(25, 25, 30))
+        self.taskMgr.add(self.move_rovers, "MoveRovers")
+
+
+    def move_rovers(self, task):
+        # dt = globalClock.getDt()  # Time since last frame
+        # # self.lifters[0].setY(self.lifters[0], self.speed * dt)  # Move forward along its Y-axis
+        
+        for rover in self.rovers:
+            rover.make_move(self.gluers, self.lifters)
+
+        return task.cont
+
 
 
 if __name__ == "__main__":
-    state = State(gluers, brick_pile, house, screen, sim_speed)
+    app = Simulation()
+    app.run()
 
-    init_robots()
-    draw()
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
 
-        for i in range(100):
-            step()
 
-            pygame.display.flip()
-            clock.tick(120)
+
+
