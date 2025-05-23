@@ -11,16 +11,15 @@ public class Lifter : MonoBehaviour
         MovingBaseToWallTarget,
         WaitingForRoverAtWall,
         PositioningCraneAndPlacing,
-        BrickPlacedCooldown,
         Idle
     }
     public LifterState currentState = LifterState.Idle;
 
     [Header("References")]
+    public GameObject groundBrickObject;
     public GameObject brickObject;
     public Transform brickAnchor;
     public Transform craneRotation;
-
 
 
     [Header("Rover Interaction")]
@@ -29,18 +28,17 @@ public class Lifter : MonoBehaviour
     [Header("Crane Animation Settings")]
     public float brickAnimationSpeed = 1.0f;
     public float rotationAnimationSpeed = 100f;
-    public float placementCooldown = 2.0f;
+    public float placementCooldown = 1.8f;
 
     [Header("Wall Placement Settings")]
-    public float approachOffsetToWallTarget = 0.5f; // How far from the wall target center the Lifter base stops. Adjust based on crane reach.
-
-    private Target currentWallTarget;
-    private bool isCraneAnimating = false; // To prevent re-triggering animation
-    private Coroutine currentLifterCoroutine; // To manage ongoing operations
+    public Target currentWallTarget;
+    private bool isCraneAnimating = false;
+    private Coroutine currentLifterCoroutine;
+    private float stopDistanceZ = 2f;
+    private float movementSpeed = 0.8f;
 
     void Start()
     {
-        // --- Critical Null Checks ---
         if (brickObject == null) Debug.LogError("Lifter: Brick Visual On Crane is not assigned!");
         if (brickAnchor == null) Debug.LogError("Lifter: Brick Anchor transform is not assigned!");
         if (roverHandoverPoint == null) Debug.LogError("Lifter: Rover Handover Point (child of Lifter) is not assigned!");
@@ -48,21 +46,10 @@ public class Lifter : MonoBehaviour
 
         Debug.Log("Lifter: Started");
 
-
-
         brickObject.SetActive(false);
+        groundBrickObject.SetActive(false);
         currentState = LifterState.Idle;
         ChangeState(LifterState.FindingWallTarget);
-    }
-
-    void Update()
-    {
-        // State-specific continuous logic (if any) can go here,
-        // but most transitions are event-driven or coroutine-driven.
-        if (currentState == LifterState.MovingBaseToWallTarget)
-        {
-            CheckNavArrival();
-        }
     }
 
     void ChangeState(LifterState newState)
@@ -87,136 +74,87 @@ public class Lifter : MonoBehaviour
                 currentLifterCoroutine = StartCoroutine(FindingWallTargetRoutine());
                 break;
             case LifterState.MovingBaseToWallTarget:
-                // Movement is initiated by FindingWallTargetRoutine
                 break;
             case LifterState.WaitingForRoverAtWall:
-                // Lifter is now positioned and ready. Rover will find it.
-                Debug.Log($"Lifter is at {transform.position}, waiting for Rover at {roverHandoverPoint.position} for target {currentWallTarget?.name}");
                 break;
             case LifterState.PositioningCraneAndPlacing:
-                // Animation is started by SignalBrickDelivery
-                break;
-            case LifterState.BrickPlacedCooldown:
-                // Cooldown is handled at the end of the placement coroutine
                 break;
         }
     }
 
     IEnumerator FindingWallTargetRoutine()
     {
-        Debug.Log("Lifter: WALLLLL");
-
-        while (true) // Keep trying to find a target
+        while (true)
         {
-            currentWallTarget = FindNextAvailableWallTarget();
+            Target[] listOfTargets = FindObjectsOfType<Target>() as Target[];
+
+            Debug.Log("Targets: " + listOfTargets.Length);
+
+            currentWallTarget = FindObjectsOfType<Target>()
+            .Where(t => t.IsAvailable())
+            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
+            .LastOrDefault();
 
             if (currentWallTarget != null)
             {
                 currentWallTarget.MarkAsReservedForPlacement();
                 Debug.Log($"Lifter: Found wall target {currentWallTarget.name}. Preparing to move base.");
 
-                // Calculate position for Lifter base to approach the wall target
-                // This needs to be tailored: if wall is along X, lifter moves on Z, or vice-versa.
-                // Assuming wallTarget.transform.forward points "out" from the wall face.
-                // Lifter stops 'approachOffsetToWallTarget' in front of it.
-                Vector3 lifterBaseTargetPos = currentWallTarget.transform.position;
-                lifterBaseTargetPos.y = transform.position.y; // Maintain Lifter's current height (assuming it's on a track/wall top)
-
                 ChangeState(LifterState.MovingBaseToWallTarget);
-                // Stop any existing movement coroutines on this object to prevent conflicts
                 StopAllCoroutines();
-
-                // Start the new movement coroutine
                 StartCoroutine(MoveAlongZAxisCoroutine());
-                yield break; // Exit coroutine once target is found and moving
+                yield break;
             }
             else
             {
                 Debug.Log("Lifter: No available wall targets found. Will retry in 3 seconds.");
-                yield return new WaitForSeconds(3f); // Wait before retrying
+                yield return new WaitForSeconds(3f);
             }
         }
     }
 
     private IEnumerator MoveAlongZAxisCoroutine()
     {
-        // Store the starting position of this object
         Vector3 startPosition = transform.position;
 
-        // Get the Z-coordinate of the target wall
-        float targetZ = currentWallTarget.position.z;
+        float targetZ = currentWallTarget.transform.position.z;
 
-        // Calculate the final Z position based on the direction of movement
-        // If the target is "further" in Z, we stop before it.
-        // If the target is "closer" in Z, we stop after it.
         float finalZ;
-        if (targetZ > startPosition.z) // Moving towards positive Z
-        {
+        if (targetZ > startPosition.z)
             finalZ = targetZ - stopDistanceZ;
-        }
-        else // Moving towards negative Z
-        {
+        else
             finalZ = targetZ + stopDistanceZ;
-        }
 
-        // The target position for Vector3.Lerp, keeping X and Y constant
-        // We only want to change the Z component of the current object's position.
         Vector3 endPositionForLerp = new Vector3(startPosition.x, startPosition.y, finalZ);
 
-        // Calculate the absolute distance to travel along the Z axis
         float distanceToTravel = Mathf.Abs(finalZ - startPosition.z);
-
-        // Calculate the duration of the movement based on distance and speed
-        // This ensures consistent speed regardless of the distance.
         float duration = distanceToTravel / movementSpeed;
-
         float journeyTime = 0f;
 
-        // Only proceed if there's actual distance to cover
         if (duration > 0)
         {
-            // Loop while the journey time is less than the calculated duration
             while (journeyTime < duration)
             {
-                journeyTime += Time.deltaTime; // Increment time by the time passed since last frame
-                float fraction = Mathf.Clamp01(journeyTime / duration); // Calculate progress (0 to 1)
+                journeyTime += Time.deltaTime;
+                float fraction = Mathf.Clamp01(journeyTime / duration);
 
-                // Interpolate the Z position, keeping X and Y from the starting position
-                // We use startPosition.x and startPosition.y to ensure movement is strictly on Z
                 Vector3 currentLerpedPosition = Vector3.Lerp(startPosition, endPositionForLerp, fraction);
                 transform.position = new Vector3(startPosition.x, startPosition.y, currentLerpedPosition.z);
 
-                yield return null; // Wait for the next frame before continuing the loop
+                yield return null;
             }
         }
 
-        // Ensure the object is exactly at the final Z position to avoid floating point inaccuracies
-        transform.position = new Vector3(startPosition.x, startPosition.y, finalZ);
-    }
-
-    void OnNavBaseArrival()
-    {
+        // transform.position = new Vector3(startPosition.x, startPosition.y, finalZ);
         Debug.Log("Lifter base arrived at approach point for: " + currentWallTarget.name);
         ChangeState(LifterState.WaitingForRoverAtWall);
-        SignalBrickDeliveryFromRover();
     }
 
-    Target FindNextAvailableWallTarget()
-    {
-        return FindObjectsOfType<Target>()
-            .Where(t => t.IsAvailable())
-            // Adjust OrderBy if you have a specific sequence for wall building
-            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
-            .LastOrDefault();
-    }
-
-    // Called by the Rover when it arrives at roverHandoverPoint
     public void SignalBrickDeliveryFromRover()
     {
         if (currentState != LifterState.WaitingForRoverAtWall)
         {
             Debug.LogWarning($"Lifter: Received brick delivery signal but was not in WaitingForRoverAtWall state. Current state: {currentState}");
-            // Optionally, Rover could check Lifter's state before even moving to it.
             return;
         }
 
@@ -235,7 +173,7 @@ public class Lifter : MonoBehaviour
 
     IEnumerator AnimateCraneFromHandoverToPlaceAtWallTarget(Target wallTarget)
     {
-
+        groundBrickObject.SetActive(true);
         Quaternion defaultRotation = Quaternion.Euler(0, 230, 0);
         Quaternion outerBrickRotation = Quaternion.Euler(0, 160, 0);
         Quaternion innerBrickRotation = Quaternion.Euler(0, 120, 0);
@@ -243,11 +181,9 @@ public class Lifter : MonoBehaviour
         Vector3 brickInAir = new Vector3(2.95f, 1.4f, -0.796f);
         Vector3 brickInPlace = new Vector3(2.95f, 2f, -0.796f);
 
-
         isCraneAnimating = true;
         brickAnchor.transform.localPosition = brickInAir;
         craneRotation.transform.localRotation = defaultRotation;
-
 
         Debug.Log("Lifter: Crane Animation Phase 0 - get brick");
 
@@ -266,6 +202,8 @@ public class Lifter : MonoBehaviour
         }
         brickAnchor.transform.localPosition = brickOnGround;
         brickObject.SetActive(true);
+        groundBrickObject.SetActive(false);
+
 
         Debug.Log("Lifter: Crane Animation Phase 0 Complete");
         if (duration0 > 0) yield return new WaitForSeconds(0.3f);
@@ -289,8 +227,6 @@ public class Lifter : MonoBehaviour
         Debug.Log("Lifter: Crane Animation Phase 1 Complete");
         if (duration1 > 0) yield return new WaitForSeconds(0.3f);
 
-
-
         // --- Phase 2: Rotate arm to target ---
         Debug.Log("Lifter: Crane Animation Phase 2 - Rotate to Wall Target: " + wallTarget.name);
         float journeyTime2 = 0f;
@@ -309,7 +245,6 @@ public class Lifter : MonoBehaviour
         craneRotation.transform.localRotation = outerBrickRotation;
         Debug.Log("Lifter: Crane Animation Phase 2 Complete.");
         if (duration2 > 0) yield return new WaitForSeconds(0.3f);
-
 
         // --- Phase 3: place the brick ---
         Debug.Log("Lifter: Crane Animation Phase 3");
@@ -332,9 +267,8 @@ public class Lifter : MonoBehaviour
         if (duration3 > 0) yield return new WaitForSeconds(0.3f);
 
         wallTarget.ConfirmPlacement();
-        currentWallTarget = null; // Clear current wall target
+        currentWallTarget = null;
         brickObject.SetActive(false);
-
 
         // --- Phase 4: lift to neutral the brick ---
         Debug.Log("Lifter: Crane Animation Phase 4");
@@ -356,8 +290,6 @@ public class Lifter : MonoBehaviour
         Debug.Log("Lifter: Crane Animation Phase 4 Complete Placed.");
         if (duration4 > 0) yield return new WaitForSeconds(0.3f);
 
-
-
         // --- Phase 5: Rotate arm to normal ---
         Debug.Log("Lifter: Crane Animation Phase 5 - Rotate to Wall Target: " + wallTarget.name);
         float journeyTime5 = 0f;
@@ -377,8 +309,7 @@ public class Lifter : MonoBehaviour
         Debug.Log("Lifter: Crane Animation Phase 5 Complete.");
         if (duration5 > 0) yield return new WaitForSeconds(0.3f);
 
-
-        // isCraneAnimating = false;
-        // ChangeState(LifterState.FindingWallTarget); // Go back to find the next spot
+        isCraneAnimating = false;
+        ChangeState(LifterState.FindingWallTarget);
     }
 }
