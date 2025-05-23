@@ -1,81 +1,27 @@
 #include <Arduino.h>
-#include <motor.h>
+#include <drive.h>
+#include <lift.h>
 
-Motor rightFront(1, 2);
-Motor rightBack(41, 42);
-
-Motor leftFront(4, 5);
-Motor leftBack(7, 6);
-
-int defaultSpeed = 255;
-
-void MoveFwd(int speed)
+void setup()
 {
-  rightFront.move(speed, dir);
-  rightBack.move(speed, dir);
-  leftFront.move(speed, dir);
-  leftBack.move(speed, dir);
+  Serial.begin(115200);
+  Serial.setTimeout(100);
 }
 
-void MoveBack(int speed)
+void loop()
 {
-  rightFront.move(speed, -dir);
-  rightBack.move(speed, -dir);
-  leftFront.move(speed, -dir);
-  leftBack.move(speed, -dir);
-}
-
-void MoveRight(int speed)
-{
-  rightFront.move(speed, -dir);
-  rightBack.move(speed, dir);
-  leftFront.move(speed, dir);
-  leftBack.move(speed, -dir);
-  Serial.println("Rotate Right");
-}
-
-void MoveLeft(int speed)
-{
-  rightFront.move(speed, dir);
-  rightBack.move(speed, -dir);
-  leftFront.move(speed, -dir);
-  leftBack.move(speed, dir);
-  Serial.println("Rotate Left");
-}
-
-void RotateClockwise(int speed)
-{
-  rightFront.move(speed, -dir);
-  rightBack.move(speed, -dir);
-  leftFront.move(speed, dir);
-  leftBack.move(speed, dir);
-
-  Serial.println("Rotate Clockwise");
-}
-
-void RotateCounterClockwise(int speed)
-{
-  rightFront.move(speed, dir);
-  rightBack.move(speed, dir);
-  leftFront.move(speed, -dir);
-  leftBack.move(speed, -dir);
-  Serial.println("Rotate Counter Clockwise");
+  readSerial();
 }
 
 void Stop()
 {
+  arm.stop();
   leftFront.stop();
   leftBack.stop();
   rightFront.stop();
   rightBack.stop();
   Serial.println("STOP");
   delay(500);
-}
-
-void setup()
-{
-  Serial.begin(115200);
-  Serial.setTimeout(100);
 }
 
 void readSerial()
@@ -111,14 +57,31 @@ void readSerial()
     {
       RotateCounterClockwise(defaultSpeed);
     }
+
+    else if (op == 'u')
+    {
+      LiftArm(defaultSpeed);
+    }
+    else if (op == 'd')
+    {
+      LowerArm(defaultSpeed);
+    }
+    else if (op == 'a')
+    {
+      ArmClockwise(defaultSpeed);
+    }
+    else if (op == 'd')
+    {
+      ArmCounterClockwise(defaultSpeed);
+    }
+    else if (op == 'e')
+    {
+      arm.setEnable(!arm.enable);
+    }
+
     else if (op == 's')
     {
       Stop();
     }
   }
-}
-
-void loop()
-{
-  readSerial();
 }
