@@ -17,12 +17,9 @@ public class Lifter : MonoBehaviour
     public LifterState currentState = LifterState.Idle;
 
     [Header("References")]
-    public NavMeshAgent agent;
     public GameObject brickObject;
     public Transform brickAnchor;
     public Transform craneRotation;
-
-
 
 
 
@@ -44,8 +41,6 @@ public class Lifter : MonoBehaviour
     void Start()
     {
         // --- Critical Null Checks ---
-        if (agent == null) agent = GetComponent<NavMeshAgent>();
-        if (agent == null) Debug.LogError("Lifter: NavMeshAgent component not found or assigned!");
         if (brickObject == null) Debug.LogError("Lifter: Brick Visual On Crane is not assigned!");
         if (brickAnchor == null) Debug.LogError("Lifter: Brick Anchor transform is not assigned!");
         if (roverHandoverPoint == null) Debug.LogError("Lifter: Rover Handover Point (child of Lifter) is not assigned!");
@@ -56,9 +51,6 @@ public class Lifter : MonoBehaviour
 
 
         brickObject.SetActive(false);
-        agent.updateRotation = false;
-        // For straight movement along a wall, you might want to disable NavMeshAgent's rotation updates
-        // agent.updateRotation = false; // And handle Lifter's body rotation manually or keep it fixed.
         currentState = LifterState.Idle;
         ChangeState(LifterState.FindingWallTarget);
     }
@@ -130,8 +122,12 @@ public class Lifter : MonoBehaviour
                 Vector3 lifterBaseTargetPos = currentWallTarget.transform.position;
                 lifterBaseTargetPos.y = transform.position.y; // Maintain Lifter's current height (assuming it's on a track/wall top)
 
-                SetNavDestination(lifterBaseTargetPos);
                 ChangeState(LifterState.MovingBaseToWallTarget);
+                // Stop any existing movement coroutines on this object to prevent conflicts
+                StopAllCoroutines();
+
+                // Start the new movement coroutine
+                StartCoroutine(MoveAlongZAxisCoroutine());
                 yield break; // Exit coroutine once target is found and moving
             }
             else
@@ -142,27 +138,65 @@ public class Lifter : MonoBehaviour
         }
     }
 
-    void SetNavDestination(Vector3 pos)
+    private IEnumerator MoveAlongZAxisCoroutine()
     {
-        agent.SetDestination(pos);
-        agent.isStopped = false;
-    }
+        // Store the starting position of this object
+        Vector3 startPosition = transform.position;
 
-    void CheckNavArrival()
-    {
-        if (!agent.pathPending && agent.hasPath && !agent.isStopped)
+        // Get the Z-coordinate of the target wall
+        float targetZ = currentWallTarget.position.z;
+
+        // Calculate the final Z position based on the direction of movement
+        // If the target is "further" in Z, we stop before it.
+        // If the target is "closer" in Z, we stop after it.
+        float finalZ;
+        if (targetZ > startPosition.z) // Moving towards positive Z
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            finalZ = targetZ - stopDistanceZ;
+        }
+        else // Moving towards negative Z
+        {
+            finalZ = targetZ + stopDistanceZ;
+        }
+
+        // The target position for Vector3.Lerp, keeping X and Y constant
+        // We only want to change the Z component of the current object's position.
+        Vector3 endPositionForLerp = new Vector3(startPosition.x, startPosition.y, finalZ);
+
+        // Calculate the absolute distance to travel along the Z axis
+        float distanceToTravel = Mathf.Abs(finalZ - startPosition.z);
+
+        // Calculate the duration of the movement based on distance and speed
+        // This ensures consistent speed regardless of the distance.
+        float duration = distanceToTravel / movementSpeed;
+
+        float journeyTime = 0f;
+
+        // Only proceed if there's actual distance to cover
+        if (duration > 0)
+        {
+            // Loop while the journey time is less than the calculated duration
+            while (journeyTime < duration)
             {
-                OnNavBaseArrival();
+                journeyTime += Time.deltaTime; // Increment time by the time passed since last frame
+                float fraction = Mathf.Clamp01(journeyTime / duration); // Calculate progress (0 to 1)
+
+                // Interpolate the Z position, keeping X and Y from the starting position
+                // We use startPosition.x and startPosition.y to ensure movement is strictly on Z
+                Vector3 currentLerpedPosition = Vector3.Lerp(startPosition, endPositionForLerp, fraction);
+                transform.position = new Vector3(startPosition.x, startPosition.y, currentLerpedPosition.z);
+
+                yield return null; // Wait for the next frame before continuing the loop
             }
         }
+
+        // Ensure the object is exactly at the final Z position to avoid floating point inaccuracies
+        transform.position = new Vector3(startPosition.x, startPosition.y, finalZ);
     }
 
     void OnNavBaseArrival()
     {
         Debug.Log("Lifter base arrived at approach point for: " + currentWallTarget.name);
-        agent.isStopped = true;
         ChangeState(LifterState.WaitingForRoverAtWall);
         SignalBrickDeliveryFromRover();
     }
