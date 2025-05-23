@@ -66,8 +66,8 @@ public class Rover : MonoBehaviour
                 {
                     Debug.Log("Rover: Gluer is done. Collecting glued brick.");
                     currentGluer.RoverCollectsBrick(); // Tell gluer it's been collected
-                    if(brickVisual != null) brickVisual.SetActive(true);
-                    if(glueVisual != null) glueVisual.SetActive(true); // Show glue on brick
+                    if (brickVisual != null) brickVisual.SetActive(true);
+                    if (glueVisual != null) glueVisual.SetActive(true); // Show glue on brick
 
                     currentLifter = FindWaitingLifter();
                     if (currentLifter != null)
@@ -95,7 +95,7 @@ public class Rover : MonoBehaviour
         {
             case RoverState.GettingBrickFromPile:
                 Debug.Log("Rover: Arrived at brick pile. Picked up a brick.");
-                if(brickVisual != null) brickVisual.SetActive(true); // Show brick
+                if (brickVisual != null) brickVisual.SetActive(true); // Show brick
 
                 currentGluer = FindIdleGluer();
                 if (currentGluer != null)
@@ -116,7 +116,7 @@ public class Rover : MonoBehaviour
                 if (currentGluer != null)
                 {
                     currentGluer.StartGluingProcess();
-                    if(brickVisual != null) brickVisual.SetActive(false);
+                    if (brickVisual != null) brickVisual.SetActive(false);
                     currentState = RoverState.WaitingForGlue;
                 }
                 break;
@@ -125,12 +125,13 @@ public class Rover : MonoBehaviour
                 Debug.Log("Rover: Arrived at Lifter's handover point.");
                 if (currentLifter != null)
                 {
-                    currentLifter.SignalBrickDelivery(); // Signal lifter
-                    if(brickVisual != null) brickVisual.SetActive(false); // Deactivate its visuals
-                    if(glueVisual != null) glueVisual.SetActive(false);
-                    currentState = RoverState.Idle; // Rover is done with this cycle
-                    currentLifter = null; // Release reference
-                    Debug.Log("Rover: Brick delivered to Lifter. Returning to Idle.");
+                    // VITAL CHANGE HERE: Call the renamed method on Lifter
+                    currentLifter.SignalBrickDeliveryFromRover();
+                    if (brickVisual != null) brickVisual.SetActive(false);
+                    if (glueVisual != null) glueVisual.SetActive(false);
+                    ChangeState(RoverState.Idle); // Using ChangeState if you implement it like in Lifter
+                    currentLifter = null;
+                    Debug.Log("Rover: Brick delivery signalled to Lifter. Returning to Idle.");
                 }
                 break;
         }
@@ -139,8 +140,9 @@ public class Rover : MonoBehaviour
     Lifter FindWaitingLifter()
     {
         return FindObjectsOfType<Lifter>()
-            .Where(l => l.currentState == Lifter.LifterState.WaitingForRover)
-            .OrderBy(l => Vector3.Distance(transform.position, l.transform.position))
+            // VITAL CHANGE HERE: New Lifter state to look for
+            .Where(l => l.currentState == Lifter.LifterState.WaitingForRoverAtWall)
+            .OrderBy(l => Vector3.Distance(transform.position, l.roverHandoverPoint.position)) // Order by distance to ITS handover point
             .FirstOrDefault();
     }
 
@@ -152,14 +154,14 @@ public class Rover : MonoBehaviour
             .FirstOrDefault();
     }
 
-     void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected()
     {
         if (agent != null && agent.hasPath)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, agent.destination);
         }
-         if (currentGluer != null && (currentState == RoverState.MovingToGluer || currentState == RoverState.WaitingForGlue))
+        if (currentGluer != null && (currentState == RoverState.MovingToGluer || currentState == RoverState.WaitingForGlue))
         {
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(transform.position, currentGluer.transform.position);
@@ -169,5 +171,13 @@ public class Rover : MonoBehaviour
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(transform.position, currentLifter.roverHandoverPoint.position);
         }
+    }
+
+    public void ChangeState(RoverState newState)
+    {
+        if (currentState == newState) return;
+        currentState = newState;
+        Debug.Log($"Rover State changed to: {currentState}");
+        // ... state entry logic ...
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 #if UNITY_EDITOR
     using UnityEditor;
-    #endif
+#endif
 
 public class Gluer : MonoBehaviour
 {
@@ -18,8 +18,8 @@ public class Gluer : MonoBehaviour
 
     void Start()
     {
-        if(brickObject != null) brickObject.SetActive(false);
-        if(glueObject != null) glueObject.SetActive(false);
+        if (brickObject != null) brickObject.SetActive(false);
+        if (glueObject != null) glueObject.SetActive(false);
         Debug.Log("Gluer Online. State: " + currentState);
     }
 
@@ -29,16 +29,16 @@ public class Gluer : MonoBehaviour
         {
             currentState = GluerState.Gluing;
             Debug.Log("Gluer: Starting gluing process.");
-            if(brickObject != null) brickObject.SetActive(true); // Show brick
+            if (brickObject != null) brickObject.SetActive(true); // Show brick
             StartCoroutine(GluingCoroutine());
         }
     }
 
     IEnumerator GluingCoroutine()
     {
-        if(glueObject != null) glueObject.SetActive(false); // Show glue effect
+        if (glueObject != null) glueObject.SetActive(false); // Show glue effect
         yield return new WaitForSeconds(gluingTime);
-        if(glueObject != null) glueObject.SetActive(true);
+        if (glueObject != null) glueObject.SetActive(true);
         // Brick still visible, now with conceptual glue
         currentState = GluerState.DoneGluing;
         Debug.Log("Gluer: Gluing process complete. Ready for Rover pickup.");
@@ -49,8 +49,8 @@ public class Gluer : MonoBehaviour
         if (currentState == GluerState.DoneGluing)
         {
             Debug.Log("Gluer: Rover collected glued brick.");
-            if(brickObject != null) brickObject.SetActive(false); // Hide brick
-            if(glueObject != null) glueObject.SetActive(false); // Hide glue effect
+            if (brickObject != null) brickObject.SetActive(false); // Hide brick
+            if (glueObject != null) glueObject.SetActive(false); // Hide glue effect
             currentState = GluerState.Idle; // Ready for next brick
         }
     }

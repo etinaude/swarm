@@ -71,7 +71,7 @@ public class Target : MonoBehaviour
         }
     }
 
-     void OnValidate()
+    void OnValidate()
     {
         // Update visuals in editor if state changes, helps with setup
         if (placementIndicator != null && currentState != TargetState.ReservedForPlacement && Application.isEditor && !Application.isPlaying) placementIndicator.SetActive(false);

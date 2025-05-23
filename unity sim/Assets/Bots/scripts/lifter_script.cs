@@ -5,61 +5,148 @@ using UnityEngine.AI;
 
 public class Lifter : MonoBehaviour
 {
-    public enum LifterState { WaitingForRover, MovingBaseToWallTarget, PositioningCrane, BrickPlacedCooldown }
-    public LifterState currentState = LifterState.WaitingForRover;
+    public enum LifterState
+    {
+        FindingWallTarget,
+        MovingBaseToWallTarget,
+        WaitingForRoverAtWall,
+        PositioningCraneAndPlacing, // Combines receiving and placing animation
+        BrickPlacedCooldown,
+        Idle
+    }
+    public LifterState currentState = LifterState.Idle;
 
     [Header("References")]
     public NavMeshAgent agent;
-    public GameObject brickVisualOnCrane; // The visual representation of the brick on the crane arm
-    public Transform brickAnchor;        // Empty child of Lifter (e.g., "CraneHook") for brick parenting & local animation
+    public GameObject brickVisualOnCrane;
+    public Transform brickAnchor; // Parent for the brickVisual, crane's "hook"
+    public Transform craneRotation; // Parent for the brickVisual, crane's "hook"
+
+    public Vector3 defaultRotation = Vector3(0, 230, 0);
+    public Vector3 outerBrickRotation = Vector3(0, 160, 0);
+    public Vector3 innerBrickRotation = Vector3(0, 120, 0);
+    public Vector3 brickOnGround = Vector3(0, -0.0005, -0.00208);
+    public Vector3 brickInAir = Vector3(-0.00146, -0.00384, -0.00208);
+
+
 
     [Header("Rover Interaction")]
-    public Transform roverHandoverPoint; // Where the Rover should arrive to deliver the brick
+    // IMPORTANT: Assign an empty child GameObject of this Lifter.
+    // This point moves with the lifter.
+    public Transform roverHandoverPoint;
 
     [Header("Crane Animation Settings")]
-    public Vector3 liftedBrickLocalPosition = new Vector3(0, 0, 0); // Phase 1: Local pos for brick relative to anchor (lifted & ready)
-    public Vector3 liftedBrickLocalRotationEuler = new Vector3(0, 0, 0);   // Phase 1: Local rotation for brick relative to anchor
     public float brickAnimationSpeed = 1.0f;
-    public float placementCooldown = 2.0f; // Small delay after placing a brick
+    public float placementCooldown = 2.0f;
 
     [Header("Wall Placement Settings")]
-    public float approachOffsetDistance = 1.0f; // How far from the wall target the Lifter base stops
+    public float approachOffsetToWallTarget = 0.5f; // How far from the wall target center the Lifter base stops. Adjust based on crane reach.
 
     private Target currentWallTarget;
-    private bool isCraneAnimating = false;
-    private Coroutine currentAnimationCoroutine;
+    private bool isCraneAnimating = false; // To prevent re-triggering animation
+    private Coroutine currentLifterCoroutine; // To manage ongoing operations
 
     void Start()
     {
+        // --- Critical Null Checks ---
         if (agent == null) agent = GetComponent<NavMeshAgent>();
         if (agent == null) Debug.LogError("Lifter: NavMeshAgent component not found or assigned!");
         if (brickVisualOnCrane == null) Debug.LogError("Lifter: Brick Visual On Crane is not assigned!");
         if (brickAnchor == null) Debug.LogError("Lifter: Brick Anchor transform is not assigned!");
-        if (roverHandoverPoint == null) Debug.LogError("Lifter: Rover Handover Point is not assigned!");
+        if (roverHandoverPoint == null) Debug.LogError("Lifter: Rover Handover Point (child of Lifter) is not assigned!");
+        else if (roverHandoverPoint.parent != transform) Debug.LogWarning("Lifter: roverHandoverPoint should be a direct child of the Lifter GameObject for correct positioning.");
 
-        brickVisualOnCrane.SetActive(false); // Crane starts empty
-        agent.updateRotation = false; // For straight movement along the wall, if desired
-        Debug.Log("Lifter Online. State: " + currentState);
+        Debug.Log("Lifter: Started");
+
+
+
+        brickVisualOnCrane.SetActive(false);
+        agent.updateRotation = false;
+        // For straight movement along a wall, you might want to disable NavMeshAgent's rotation updates
+        // agent.updateRotation = false; // And handle Lifter's body rotation manually or keep it fixed.
+        currentState = LifterState.Idle;
+        ChangeState(LifterState.FindingWallTarget);
     }
 
     void Update()
     {
+        // State-specific continuous logic (if any) can go here,
+        // but most transitions are event-driven or coroutine-driven.
+        if (currentState == LifterState.MovingBaseToWallTarget)
+        {
+            CheckNavArrival();
+        }
+    }
+
+    void ChangeState(LifterState newState)
+    {
+        Debug.Log("Lifter: State change");
+        Debug.Log($"Lifter current state: {currentState}");
+        Debug.Log($"Lifter new state: {newState}");
+
+
+        if (currentState == newState) return;
+
+        currentState = newState;
+        Debug.Log($"Lifter State changed to: {currentState}");
+
+        // --- State Entry Logic ---
         switch (currentState)
         {
-            case LifterState.WaitingForRover:
-                // Logic for this state is mainly passive, waiting for Rover to call SignalBrickDelivery
+            case LifterState.FindingWallTarget:
+                if (currentLifterCoroutine != null) StopCoroutine(currentLifterCoroutine);
+                Debug.Log("lifter: find wall target");
+
+                currentLifterCoroutine = StartCoroutine(FindingWallTargetRoutine());
                 break;
             case LifterState.MovingBaseToWallTarget:
-                CheckNavArrival();
+                // Movement is initiated by FindingWallTargetRoutine
                 break;
-            case LifterState.PositioningCrane:
-                // Animation is running, wait for it to finish (handled by coroutine)
+            case LifterState.WaitingForRoverAtWall:
+                // Lifter is now positioned and ready. Rover will find it.
+                Debug.Log($"Lifter is at {transform.position}, waiting for Rover at {roverHandoverPoint.position} for target {currentWallTarget?.name}");
+                break;
+            case LifterState.PositioningCraneAndPlacing:
+                // Animation is started by SignalBrickDelivery
                 break;
             case LifterState.BrickPlacedCooldown:
-                // Managed by a simple timer or Invoke in the coroutine's completion
+                // Cooldown is handled at the end of the placement coroutine
                 break;
         }
     }
+
+    IEnumerator FindingWallTargetRoutine()
+    {
+        Debug.Log("Lifter: WALLLLL");
+
+        while (true) // Keep trying to find a target
+        {
+            currentWallTarget = FindNextAvailableWallTarget();
+
+            if (currentWallTarget != null)
+            {
+                currentWallTarget.MarkAsReservedForPlacement();
+                Debug.Log($"Lifter: Found wall target {currentWallTarget.name}. Preparing to move base.");
+
+                // Calculate position for Lifter base to approach the wall target
+                // This needs to be tailored: if wall is along X, lifter moves on Z, or vice-versa.
+                // Assuming wallTarget.transform.forward points "out" from the wall face.
+                // Lifter stops 'approachOffsetToWallTarget' in front of it.
+                Vector3 lifterBaseTargetPos = currentWallTarget.transform.position;
+                lifterBaseTargetPos.y = transform.position.y; // Maintain Lifter's current height (assuming it's on a track/wall top)
+
+                SetNavDestination(lifterBaseTargetPos);
+                ChangeState(LifterState.MovingBaseToWallTarget);
+                yield break; // Exit coroutine once target is found and moving
+            }
+            else
+            {
+                Debug.Log("Lifter: No available wall targets found. Will retry in 3 seconds.");
+                yield return new WaitForSeconds(3f); // Wait before retrying
+            }
+        }
+    }
+
 
     void SetNavDestination(Vector3 pos)
     {
@@ -69,7 +156,7 @@ public class Lifter : MonoBehaviour
 
     void CheckNavArrival()
     {
-        if (!isCraneAnimating && !agent.pathPending && agent.hasPath && !agent.isStopped)
+        if (!agent.pathPending && agent.hasPath && !agent.isStopped)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
@@ -80,164 +167,130 @@ public class Lifter : MonoBehaviour
 
     void OnNavBaseArrival()
     {
-        Debug.Log("Lifter base arrived at wall target approach point.");
-        agent.isStopped = true; // Stop base movement
-        // agent.ResetPath(); // Optional
-
-        if (currentState == LifterState.MovingBaseToWallTarget && currentWallTarget != null)
-        {
-            currentState = LifterState.PositioningCrane;
-            Debug.Log("Lifter: Starting crane animation to place brick at " + currentWallTarget.name);
-            if(currentAnimationCoroutine != null) StopCoroutine(currentAnimationCoroutine);
-            currentAnimationCoroutine = StartCoroutine(AnimateCraneToPlaceBrick(currentWallTarget));
-        }
+        Debug.Log("Lifter base arrived at approach point for: " + currentWallTarget.name);
+        agent.isStopped = true;
+        ChangeState(LifterState.WaitingForRoverAtWall);
+        // SignalBrickDeliveryFromRover();
     }
 
     Target FindNextAvailableWallTarget()
     {
         return FindObjectsOfType<Target>()
             .Where(t => t.IsAvailable())
-            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position)) // Or some other logic for wall order
+            // Adjust OrderBy if you have a specific sequence for wall building
+            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
             .LastOrDefault();
     }
 
-    // Called by the Rover
-    public void SignalBrickDelivery()
+    // Called by the Rover when it arrives at roverHandoverPoint
+    public void SignalBrickDeliveryFromRover()
     {
-        if (currentState != LifterState.WaitingForRover)
+        if (currentState != LifterState.WaitingForRoverAtWall)
         {
-            Debug.LogWarning("Lifter received brick delivery signal but was not in WaitingForRover state. State: " + currentState);
-            // Potentially queue or reject if busy
+            Debug.LogWarning($"Lifter: Received brick delivery signal but was not in WaitingForRoverAtWall state. Current state: {currentState}");
+            // Optionally, Rover could check Lifter's state before even moving to it.
+            return;
+        }
+
+        if (isCraneAnimating)
+        {
+            Debug.LogWarning("Lifter: Crane is already animating. Ignoring new brick signal.");
             return;
         }
 
         Debug.Log("Lifter: Brick delivery signalled by Rover.");
 
+        // 1. Activate crane's brick visual at the (now correctly positioned) handover point.
+        // The roverHandoverPoint is a child of the Lifter, so its world position is correct.
+        brickVisualOnCrane.transform.position = roverHandoverPoint.position;
         brickVisualOnCrane.SetActive(true);
-        brickVisualOnCrane.transform.SetParent(brickAnchor); // Parent to anchor for local animation
-
-        // 2. Find a wall target
-        currentWallTarget = FindNextAvailableWallTarget();
-
-        if (currentWallTarget != null)
-        {
-            currentWallTarget.MarkAsReservedForPlacement();
-            Debug.Log($"Lifter: Found wall target {currentWallTarget.name}. Preparing to move base.");
-
-            // 3. Calculate position for Lifter base to approach the wall target
-            // This needs to be tailored to your wall and Lifter's movement axis
-            // Example: if lifter moves on XZ plane and Y is fixed (top of wall)
-            // And target is ON the wall face. Lifter stops *in front* of it by approachOffsetDistance.
-            Vector3 targetDirection = (currentWallTarget.transform.position - transform.position).normalized;
-            targetDirection.y = 0; // Assuming movement is primarily on XZ plane for the base
-
-            // Position the lifter base 'approachOffsetDistance' units away from the wall target,
-            // along the line from the target to the lifter, or along a fixed axis.
-            // For simplicity, let's assume the target's 'forward' points away from the wall.
-            // So the lifter should be at target.position + target.forward * offset.
-            Vector3 lifterBaseTargetPos = currentWallTarget.transform.position + currentWallTarget.transform.forward * approachOffsetDistance;
-            lifterBaseTargetPos.y = transform.position.y; // Keep current height
-
-            // If lifter moves only along one axis (e.g. X) and wall is along Z:
-            // lifterBaseTargetPos = new Vector3(currentWallTarget.transform.position.x, transform.position.y, transform.position.z - approachOffsetDistance);
-
-            SetNavDestination(lifterBaseTargetPos);
-            currentState = LifterState.MovingBaseToWallTarget;
-        }
-        else
-        {
-            Debug.LogWarning("Lifter: Received brick, but no available wall targets found! Holding brick.");
-            // Handle this case: maybe wait, or drop brick, or signal error
-            // For now, it will just hold the brick and stay in WaitingForRover, effectively blocking.
-            // To prevent blocking, it should go to a different state or clear the brick.
-            // For this example, let's make it go back to waiting, which is not ideal if it's holding a brick.
-            brickVisualOnCrane.SetActive(false); // Hide brick if no target
-            brickVisualOnCrane.transform.SetParent(null);
-            currentState = LifterState.WaitingForRover;
-            Debug.Log("Lifter reverting to WaitingForRover as no target was found after brick delivery.");
-        }
+        brickVisualOnCrane.transform.SetParent(brickAnchor); // Parent to anchor for local animation.
+        ChangeState(LifterState.PositioningCraneAndPlacing);
+        if (currentLifterCoroutine != null) StopCoroutine(currentLifterCoroutine);
+        currentLifterCoroutine = StartCoroutine(AnimateCraneFromHandoverToPlaceAtWallTarget(currentWallTarget));
     }
 
-    IEnumerator AnimateCraneToPlaceBrick(Target wallTarget)
+    IEnumerator AnimateCraneFromHandoverToPlaceAtWallTarget(Target wallTarget)
     {
-        if (isCraneAnimating) yield break;
         isCraneAnimating = true;
+        brickAnchor.transform.localPosition = new Vector3(0.486f, 0f, 0);
 
-        // --- Phase 1: Lift and Orient brick locally on crane arm ---
-        Debug.Log("Lifter: Crane Animation Phase 1 - Lifting and Orienting local brick.");
-        Vector3 initialLocalPos = brickVisualOnCrane.transform.localPosition;
-        Quaternion initialLocalRot = brickVisualOnCrane.transform.localRotation;
+        // --- Phase 1: Secure brick and small initial lift/orientation (relative to anchor) ---
+        Debug.Log("Lifter: Crane Animation Phase 1 - Securing and lifting brick from handover.");
+        Vector3 initialLocalPosOnAnchor = brickAnchor.transform.localPosition; // Position right after parenting at handover
+        Vector3 UpPos = new Vector3(0.8f, 2f, 0); // lift up height
 
-        Quaternion targetPhase1LocalRot = Quaternion.Euler(liftedBrickLocalRotationEuler);
         float journeyTime1 = 0f;
-        float duration1 = Vector3.Distance(initialLocalPos, liftedBrickLocalPosition) / brickAnimationSpeed;
-        if (duration1 <= 0.01f) duration1 = 0.1f; // Min duration
+        // Base duration on the offset, or use a fixed small time
+        float duration1 = (UpPos - initialLocalPosOnAnchor).magnitude / brickAnimationSpeed;
 
-        while (journeyTime1 < duration1)
+        if (duration1 > 0)
         {
-            journeyTime1 += Time.deltaTime;
-            float fraction = Mathf.Clamp01(journeyTime1 / duration1);
-            brickVisualOnCrane.transform.localPosition = Vector3.Lerp(initialLocalPos, liftedBrickLocalPosition, fraction);
-            brickVisualOnCrane.transform.localRotation = Quaternion.Slerp(initialLocalRot, targetPhase1LocalRot, fraction);
-            yield return null;
+            while (journeyTime1 < duration1)
+            {
+                journeyTime1 += Time.deltaTime;
+                float fraction = Mathf.Clamp01(journeyTime1 / duration1);
+                brickAnchor.transform.localPosition = Vector3.Lerp(initialLocalPosOnAnchor, UpPos, fraction);
+                yield return null;
+            }
         }
-        brickVisualOnCrane.transform.localPosition = liftedBrickLocalPosition;
-        brickVisualOnCrane.transform.localRotation = targetPhase1LocalRot;
-        Debug.Log("Lifter: Crane Animation Phase 1 Complete.");
-        yield return new WaitForSeconds(0.2f); // Small pause
+        brickAnchor.transform.localPosition = UpPos;
+        Debug.Log("Lifter: Crane Animation Phase 1 Complete (Secured/Lifted from Handover).");
+        if (duration1 > 0) yield return new WaitForSeconds(0.3f); // Small pause if Phase 1 happened
+
 
         // --- Phase 2: Extend/Move brick to align with World Wall Target ---
-        Debug.Log("Lifter: Crane Animation Phase 2 - Extending to Wall Target.");
-        Vector3 currentPhase2LocalPos = brickVisualOnCrane.transform.localPosition;
-        Quaternion currentPhase2LocalRot = brickVisualOnCrane.transform.localRotation;
+        Debug.Log("Lifter: Crane Animation Phase 2 - Rotate to Wall Target: " + wallTarget.name);
+        Vector3 currentPhase2StartLocalPos = brickAnchor.transform.localPosition; // Current pos after phase 1
 
-        // Calculate the required *local* position and rotation for the brick (child of brickAnchor)
-        // such that its *world* position and rotation match the wallTarget.
-        Vector3 targetBrickWorldPos = wallTarget.transform.position;
-        Quaternion targetBrickWorldRot = wallTarget.transform.rotation; // Assuming wall target defines final orientation
-
-        Vector3 finalTargetLocalPos = brickAnchor.InverseTransformPoint(targetBrickWorldPos);
-        Quaternion finalTargetLocalRot = Quaternion.Inverse(brickAnchor.rotation) * targetBrickWorldRot;
+        Vector3 finalTargetLocalPosForBrick = new Vector3(1.6f, 1.2f, 2f);
 
         float journeyTime2 = 0f;
-        float duration2 = Vector3.Distance(currentPhase2LocalPos, finalTargetLocalPos) / brickAnimationSpeed;
-         if (duration2 <= 0.01f) duration2 = 0.1f; // Min duration
+        float duration2 = Vector3.Distance(currentPhase2StartLocalPos, finalTargetLocalPosForBrick) / brickAnimationSpeed;
+        if (duration2 <= 0.01f) duration2 = 0.1f;
 
         while (journeyTime2 < duration2)
         {
             journeyTime2 += Time.deltaTime;
             float fraction = Mathf.Clamp01(journeyTime2 / duration2);
-            brickVisualOnCrane.transform.localPosition = Vector3.Lerp(currentPhase2LocalPos, finalTargetLocalPos, fraction);
-            brickVisualOnCrane.transform.localRotation = Quaternion.Slerp(currentPhase2LocalRot, finalTargetLocalRot, fraction);
+            brickAnchor.transform.localPosition = Vector3.Lerp(currentPhase2StartLocalPos, finalTargetLocalPosForBrick, fraction);
             yield return null;
         }
-        // brickVisualOnCrane.transform.localPosition = finalTargetLocalPos; // Ensure it's exact
-        // brickVisualOnCrane.transform.localRotation = finalTargetLocalRot;
+        brickAnchor.transform.localPosition = finalTargetLocalPosForBrick;
 
-        // // Brick is now visually in place. Finalize.
-        // Debug.Log("Lifter: Crane Animation Phase 2 Complete. Brick placed at " + wallTarget.name);
-        // brickVisualOnCrane.transform.SetParent(null); // Unparent from crane
-        // // The brick visual is now permanent in the world at wallTarget's location.
-        // // If you want the Target's own 'filledBrickVisual' to appear instead, then:
-        // // brickVisualOnCrane.SetActive(false);
+        Debug.Log("Lifter: Crane Animation Phase 2 Complete. Brick placed at " + wallTarget.name);
 
-        // wallTarget.ConfirmPlacement();
 
-        // isCraneAnimating = false;
-        // currentState = LifterState.BrickPlacedCooldown;
-        // Debug.Log("Lifter: Entering cooldown.");
+        wallTarget.ConfirmPlacement();
+        currentWallTarget = null; // Clear current wall target
+        brickVisualOnCrane.SetActive(false);
+        brickAnchor.transform.position = roverHandoverPoint.position;
 
-        // yield return new WaitForSeconds(placementCooldown);
 
-        // Debug.Log("Lifter: Cooldown finished. Returning to WaitingForRover.");
-        // currentState = LifterState.WaitingForRover;
-        // currentWallTarget = null; // Clear current target
+        // --- Phase 3: Rotate Crane back  ---
+        float journeyTime3 = 0f;
+        float duration3 = Vector3.Distance(finalTargetLocalPosForBrick, UpPos) / brickAnimationSpeed;
+        if (duration3 <= 0.01f) duration3 = 0.1f;
+
+        while (journeyTime3 < duration3)
+        {
+            journeyTime3 += Time.deltaTime;
+            float fraction = Mathf.Clamp01(journeyTime3 / duration3);
+            brickAnchor.transform.localPosition = Vector3.Lerp(finalTargetLocalPosForBrick, UpPos, fraction);
+            yield return null;
+        }
+        brickAnchor.transform.localPosition = UpPos;
+
+        Debug.Log("Lifter: Crane Animation Phase 3 Complete. ");
+
+
+        isCraneAnimating = false;
+        ChangeState(LifterState.FindingWallTarget); // Go back to find the next spot
     }
-
 
     void OnDrawGizmosSelected()
     {
-        if (agent != null && agent.hasPath)
+        if (agent != null && agent.hasPath && agent.destination != null)
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(transform.position, agent.destination);
@@ -246,18 +299,20 @@ public class Lifter : MonoBehaviour
         if (roverHandoverPoint != null)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(roverHandoverPoint.position, 0.25f);
-            Gizmos.DrawIcon(roverHandoverPoint.position + Vector3.up * 0.5f, "UGUI_ArrowDropUp", true);
+            Gizmos.DrawSphere(roverHandoverPoint.position, 0.25f); // Shows world position
+            Gizmos.DrawIcon(roverHandoverPoint.position + Vector3.up * 0.5f, "d_MoveTool On", true); // Simpler icon
         }
-        if (brickAnchor != null && brickVisualOnCrane != null && brickVisualOnCrane.activeSelf)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(brickVisualOnCrane.transform.position, 0.15f); // Show current brick pos
-        }
+        // if (brickAnchor != null && brickVisualOnCrane != null && brickVisualOnCrane.activeSelf)
+        // {
+        //     Gizmos.color = Color.red;
+        //     Gizmos.DrawSphere(brickVisualOnCrane.transform.position, 0.15f);
+        // }
         if (currentWallTarget != null)
         {
-             Gizmos.color = Color.green;
-             Gizmos.DrawLine(transform.position, currentWallTarget.transform.position);
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, currentWallTarget.transform.position);
+            Gizmos.DrawWireCube(currentWallTarget.transform.position, Vector3.one * 0.4f); // Mark target
         }
+
     }
 }
