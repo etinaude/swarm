@@ -1,16 +1,10 @@
 #include <Arduino.h>
 #include <drive.h>
-#include <lift.h>
 
 void setup()
 {
   Serial.begin(115200);
   Serial.setTimeout(100);
-}
-
-void loop()
-{
-  readSerial();
 }
 
 void Stop()
@@ -76,7 +70,7 @@ void readSerial()
     }
     else if (op == 'e')
     {
-      arm.setEnable(!arm.enable);
+      rotate.setEnable(!rotate.enable);
     }
 
     else if (op == 's')
@@ -84,4 +78,9 @@ void readSerial()
       Stop();
     }
   }
+}
+
+void loop()
+{
+  readSerial();
 }
