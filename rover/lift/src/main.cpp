@@ -4,12 +4,12 @@
 // OP <parm> <parm>
 // eg
 // l 0 1000
-// g=grip <dir> <steps>
-// l=lift <dir> <steps>
+// u=up <dir> <steps>
+// d=down <dir> <steps>
 // s=speed <speed>
 // e=enable <enable>
 
-Motor gripMotor(39, 37, 35);
+Motor lift2Motor(39, 37, 35);
 Motor liftMotor(33, 18, 16);
 
 void setup()
@@ -27,20 +27,21 @@ void readSerial()
     char op = s[0];
     Serial.println(op);
 
-    if (op == 'l')
+    if (op == 'u')
     {
       int dir = s.substring(2, 3).toInt();
       int steps = s.substring(3).toInt();
 
       liftMotor.move(steps, dir);
+      lift2Motor.move(steps, dir);
     }
-
-    if (op == 'g')
+    if (op == 'd')
     {
       int dir = s.substring(2, 3).toInt();
       int steps = s.substring(3).toInt();
 
-      gripMotor.move(steps, dir);
+      liftMotor.move(steps, -dir);
+      lift2Motor.move(steps, -dir);
     }
 
     if (op == 's')
